@@ -1,0 +1,47 @@
+[debug] [2025-08-15T04:09:38.414Z] ----------------------------------------------------------------------
+[debug] [2025-08-15T04:09:38.416Z] Command:       /Users/joeyrussell/.nvm/versions/node/v20.19.0/bin/node /Users/joeyrussell/.nvm/versions/node/v20.19.0/bin/firebase serve
+[debug] [2025-08-15T04:09:38.416Z] CLI Version:   14.1.0
+[debug] [2025-08-15T04:09:38.416Z] Platform:      darwin
+[debug] [2025-08-15T04:09:38.416Z] Node Version:  v20.19.0
+[debug] [2025-08-15T04:09:38.416Z] Time:          Thu Aug 14 2025 21:09:38 GMT-0700 (Pacific Daylight Time)
+[debug] [2025-08-15T04:09:38.416Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-08-15T04:09:38.417Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2025-08-15T04:09:38.499Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-08-15T04:09:38.500Z] > authorizing via signed-in user (josephrussell4st@gmail.com)
+[debug] [2025-08-15T04:09:38.500Z] [iam] checking project family-trivia-game for permissions ["firebase.projects.get"]
+[debug] [2025-08-15T04:09:38.500Z] Checked if tokens are valid: false, expires at: 1754853479567
+[debug] [2025-08-15T04:09:38.500Z] Checked if tokens are valid: false, expires at: 1754853479567
+[debug] [2025-08-15T04:09:38.500Z] > refreshing access token with scopes: []
+[debug] [2025-08-15T04:09:38.500Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-08-15T04:09:38.500Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-15T04:09:38.658Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-08-15T04:09:38.658Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-08-15T04:09:38.679Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/family-trivia-game:testIamPermissions [none]
+[debug] [2025-08-15T04:09:38.679Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/family-trivia-game:testIamPermissions x-goog-quota-user=projects/family-trivia-game
+[debug] [2025-08-15T04:09:38.679Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/family-trivia-game:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-08-15T04:09:38.762Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2025-08-15T04:09:38.762Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[debug] [2025-08-15T04:09:38.955Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/family-trivia-game:testIamPermissions 200
+[debug] [2025-08-15T04:09:38.955Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/family-trivia-game:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-08-15T04:09:38.956Z] Checked if tokens are valid: true, expires at: 1755234577658
+[debug] [2025-08-15T04:09:38.956Z] Checked if tokens are valid: true, expires at: 1755234577658
+[debug] [2025-08-15T04:09:38.956Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/family-trivia-game [none]
+[debug] [2025-08-15T04:09:39.087Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/family-trivia-game 200
+[debug] [2025-08-15T04:09:39.087Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/family-trivia-game {"projectNumber":"481569585472","projectId":"family-trivia-game","lifecycleState":"ACTIVE","name":"family","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-05-24T03:15:21.832318Z"}
+[info] 
+[info] === Serving from '/Users/joeyrussell/Documents/coding/web/fam/kahoot-clone'...
+[info] 
+[debug] [2025-08-15T04:09:39.091Z] Checked if tokens are valid: true, expires at: 1755234577658
+[debug] [2025-08-15T04:09:39.091Z] Checked if tokens are valid: true, expires at: 1755234577658
+[debug] [2025-08-15T04:09:39.091Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/family-trivia-game [none]
+[debug] [2025-08-15T04:09:39.345Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/family-trivia-game 200
+[debug] [2025-08-15T04:09:39.345Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/family-trivia-game {"projectId":"family-trivia-game","projectNumber":"481569585472","displayName":"family","name":"projects/family-trivia-game","resources":{"hostingSite":"family-trivia-game","realtimeDatabaseInstance":"family-trivia-game-default-rtdb"},"state":"ACTIVE","etag":"1_43f3b50c-ca73-429d-8ba1-94761c1b545f"}
+[debug] [2025-08-15T04:09:49.592Z] SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>)
+    at findDependency (/Users/joeyrussell/.nvm/versions/node/v20.19.0/lib/node_modules/firebase-tools/lib/frameworks/utils.js:190:23)
+    at prepareFrameworks (/Users/joeyrussell/.nvm/versions/node/v20.19.0/lib/node_modules/firebase-tools/lib/frameworks/index.js:124:67)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async serve (/Users/joeyrussell/.nvm/versions/node/v20.19.0/lib/node_modules/firebase-tools/lib/serve/index.js:22:9)
+[error] 
+[error] Error: An unexpected error has occurred.
