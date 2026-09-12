@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 170" role="img" aria-labelledby="title desc">
+  <title id="title">PLT Solutions</title>
+  <desc id="desc">PLT Solutions logo</desc>
+  <rect width="360" height="170" fill="#ffffff"/>
+  <g fill="#414197" font-family="Arial, Helvetica, sans-serif" font-weight="700" text-anchor="middle">
+    <text x="180" y="92" font-size="112" letter-spacing="-8">PLT</text>
+    <text x="180" y="137" font-size="22" letter-spacing="12">SOLUTIONS</text>
+  </g>
+</svg>

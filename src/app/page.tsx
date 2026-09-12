@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { Quiz } from './types/game';
 import { AuthProvider, useAuth } from './components/AuthProvider';
 import { AuthPage } from './components/AuthPage';
@@ -253,6 +254,13 @@ function StudentStudyApp() {
               onClick={handleMenuClick}
               className="flex items-center gap-3 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-[#568EA6] focus:ring-offset-2 rounded-lg p-1"
             >
+              <Image
+                src="/plt-solutions-logo.svg"
+                alt="PLT Solutions"
+                width={85}
+                height={40}
+                className="h-10 w-[85px] object-contain"
+              />
               <FiBookOpen className="h-7 w-7 text-[#568EA6]" />
               <h1 className="text-xl font-bold">
                 Student <span className="text-[#568EA6]">Study</span>
