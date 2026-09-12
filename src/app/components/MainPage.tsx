@@ -289,7 +289,7 @@ export default function MainPage({ onShowAuth, user, onNavigate }: MainPageProps
 
           <div className="border-t pt-8" style={{ borderColor: '#568EA6' }}>
             <p style={{ color: '#F0B7A4' }}>
-              &copy; 2024 Student Study. Empowering learners worldwide with interactive quiz experiences.
+              &copy; 2026 Student Study - PLT Solutions "học kỹ năng nghề CNTT từ doanh nghiệp".
             </p>
           </div>
         </div>
