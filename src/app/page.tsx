@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { Quiz } from './types/game';
 import { AuthProvider, useAuth } from './components/AuthProvider';
 import { AuthPage } from './components/AuthPage';
@@ -246,13 +247,20 @@ function StudentStudyApp() {
       {user && <EmailVerificationBanner user={user} />}
 
       {/* Top Navigation Bar */}
-      <div className="fixed top-0 left-0 right-0 z-30 bg-[#F0F4F8]/80 backdrop-blur-sm border-b border-[#F0B7A4]/50 shadow-sm">
+      <div className="fixed top-0 left-0 right-0 z-30 bg-white border-b border-[#F0B7A4]/50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <button
               onClick={handleMenuClick}
               className="flex items-center gap-3 hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-[#568EA6] focus:ring-offset-2 rounded-lg p-1"
             >
+              <Image
+                src="/plt-solutions-logo.svg"
+                alt="PLT Solutions"
+                width={85}
+                height={40}
+                className="h-10 w-[85px] object-contain"
+              />
               <FiBookOpen className="h-7 w-7 text-[#568EA6]" />
               <h1 className="text-xl font-bold">
                 Student <span className="text-[#568EA6]">Study</span>

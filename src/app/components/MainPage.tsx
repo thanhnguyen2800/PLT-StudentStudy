@@ -102,7 +102,7 @@ export default function MainPage({ onShowAuth, user, onNavigate }: MainPageProps
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="feature-grid">
             <div className="text-center">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#F18C8E' }}>
                 <FaBolt className="text-xl text-white" />
@@ -289,7 +289,7 @@ export default function MainPage({ onShowAuth, user, onNavigate }: MainPageProps
 
           <div className="border-t pt-8" style={{ borderColor: '#568EA6' }}>
             <p style={{ color: '#F0B7A4' }}>
-              &copy; 2024 Student Study. Empowering learners worldwide with interactive quiz experiences.
+              &copy; 2026 Student Study - PLT Solutions "học kỹ năng nghề CNTT từ doanh nghiệp".
             </p>
           </div>
         </div>

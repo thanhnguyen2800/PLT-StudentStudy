@@ -61,3 +61,36 @@ body {
   color: var(--color-primary-dark);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.feature-grid > div {
+  min-height: 210px;
+  padding: 1.5rem 1.25rem;
+  border: 1px solid rgba(86, 142, 166, 0.2);
+  border-radius: 1rem;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(48, 95, 114, 0.08);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.feature-grid > div:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(48, 95, 114, 0.14);
+}
+
+@media (max-width: 1024px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
