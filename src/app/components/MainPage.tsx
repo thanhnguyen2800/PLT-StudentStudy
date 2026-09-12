@@ -102,7 +102,7 @@ export default function MainPage({ onShowAuth, user, onNavigate }: MainPageProps
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="feature-grid">
             <div className="text-center">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: '#F18C8E' }}>
                 <FaBolt className="text-xl text-white" />
