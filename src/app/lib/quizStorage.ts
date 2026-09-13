@@ -62,23 +62,13 @@ export class QuizStorageService {
     }
   }
 
-  // Get all quizzes for a user - with fallback for missing index
+  // Get all quizzes for a user without requiring a composite Firestore index
   static async getUserQuizzes(user: User): Promise<StoredQuiz[]> {
     try {
-      let q;
-      try {
-        q = query(
-          collection(firestore, 'quizzes'),
-          where('userId', '==', user.uid),
-          orderBy('updatedAt', 'desc')
-        );
-      } catch (indexError) {
-        console.warn('⚠️ Index not available, using basic query:', indexError);
-        q = query(
-          collection(firestore, 'quizzes'),
-          where('userId', '==', user.uid)
-        );
-      }
+      const q = query(
+        collection(firestore, 'quizzes'),
+        where('userId', '==', user.uid)
+      );
       
       const querySnapshot = await getDocs(q);
       const quizzes: StoredQuiz[] = [];
@@ -93,14 +83,11 @@ export class QuizStorageService {
         }
       });
 
-      // Sort client-side if we couldn't use orderBy
-      if (!q.toString().includes('orderBy')) {
-        quizzes.sort((a, b) => {
-          const aTime = a.updatedAt?.toMillis?.() || 0;
-          const bTime = b.updatedAt?.toMillis?.() || 0;
-          return bTime - aTime;
-        });
-      }
+      quizzes.sort((a, b) => {
+        const aTime = a.updatedAt?.toMillis?.() || 0;
+        const bTime = b.updatedAt?.toMillis?.() || 0;
+        return bTime - aTime;
+      });
       
       console.log(`📚 Retrieved ${quizzes.length} quizzes for user`);
       return quizzes;

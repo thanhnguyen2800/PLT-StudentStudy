@@ -173,8 +173,8 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
       }
 
       resetEditor();
-      await loadQuizzes();
       setActiveTab('library');
+      void loadQuizzes();
     } catch (error) {
       showToastMessage('Không thể lưu Quiz. Vui lòng thử lại.');
       console.error('Save error:', error);
