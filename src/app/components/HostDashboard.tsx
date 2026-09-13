@@ -50,7 +50,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
       } catch (error) {
         console.error('❌ Pre-loaded quiz validation failed:', error);
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        setError(`Invalid pre-loaded quiz: ${errorMessage}`);
+        setError(`Quiz tải sẵn không hợp lệ: ${errorMessage}`);
         setQuiz(null);
       }
     }
@@ -66,7 +66,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
         try {
           const result = e.target?.result;
           if (typeof result !== 'string') {
-            throw new Error('Failed to read file content');
+            throw new Error('Không thể đọc nội dung tệp');
           }
 
           const jsonData = JSON.parse(result);
@@ -81,26 +81,26 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
         } catch (error) {
           console.error('❌ JSON parsing/validation error:', error);
           const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-          setError(`Invalid JSON file: ${errorMessage}`);
+          setError(`Tệp JSON không hợp lệ: ${errorMessage}`);
           setQuiz(null);
         }
       };
 
       reader.onerror = () => {
         console.error('❌ File reading error');
-        setError('Error reading file. Please try again.');
+        setError('Lỗi khi đọc tệp. Vui lòng thử lại.');
       };
 
       reader.readAsText(file);
     } else {
       console.warn('⚠️ Invalid file type selected:', file?.type);
-      setError('Please select a valid JSON file');
+      setError('Vui lòng chọn tệp JSON hợp lệ');
     }
   };
 
   const handleJsonPaste = () => {
     if (!jsonText.trim()) {
-      setError('Please paste some JSON content');
+      setError('Vui lòng dán nội dung JSON');
       return;
     }
 
@@ -116,7 +116,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
     } catch (error) {
       console.error('❌ JSON parsing/validation error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      setError(`Invalid JSON: ${errorMessage}`);
+      setError(`JSON không hợp lệ: ${errorMessage}`);
       setQuiz(null);
     }
   };
@@ -166,8 +166,8 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
       const firebaseError = error as { code?: string; message?: string };
       setError(
         firebaseError.code
-          ? `Failed to create game (${firebaseError.code}). ${firebaseError.message || 'Please check Firebase Database Rules.'}`
-          : 'Failed to create game. Please check Firebase Database Rules and try again.'
+          ? `Không thể tạo trò chơi (${firebaseError.code}). ${firebaseError.message || 'Vui lòng kiểm tra Rules của Firebase Database.'}`
+          : 'Không thể tạo trò chơi. Vui lòng kiểm tra Rules của Firebase Database và thử lại.'
       );
     } finally {
       setLoading(false);
@@ -195,7 +195,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 border" style={{ borderColor: '#F0B7A4' }}>
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-3xl sm:text-4xl font-bold" style={{ color: '#305F72' }}>
-              Host Dashboard
+              Bảng điều khiển người tổ chức
             </h1>
             {onBack && (
               <button
@@ -203,7 +203,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                 className="bg-white/90 hover:bg-white px-4 py-2 rounded-lg transition-all duration-200 border shadow-sm"
                 style={{ color: '#305F72', borderColor: '#F0B7A4' }}
               >
-                ← Back
+                ← Quay lại
               </button>
             )}
           </div>
@@ -215,13 +215,13 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <div className="flex-1">
-                <strong className="font-semibold">Quiz Loaded:</strong> "{quiz.title}" with {quiz.questions.length} questions
+                <strong className="font-semibold">Đã tải Quiz:</strong> "{quiz.title}" với {quiz.questions.length} câu hỏi
               </div>
               <button
                 onClick={clearQuiz}
                 className="text-green-600 hover:text-green-800 font-medium text-sm"
               >
-                Clear & Upload Different
+                Xóa và tải Quiz khác
               </button>
             </div>
           )}
@@ -232,7 +232,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
               <div>
-                <strong className="font-semibold">Error:</strong> {error}
+                <strong className="font-semibold">Lỗi:</strong> {error}
               </div>
             </div>
           )}
@@ -242,7 +242,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: '#568EA6' }}></div>
               <span className="text-sm font-medium" style={{ color: '#305F72' }}>
-                <strong>Auto-Cleanup Active:</strong> Games will be automatically deleted after inactivity periods (10min waiting, 30min during game, 5min after completion)
+                <strong>Tự động dọn dẹp đang bật:</strong> Phòng chơi sẽ tự động bị xóa sau thời gian không hoạt động (10 phút chờ, 30 phút đang chơi, 5 phút sau khi kết thúc)
               </span>
             </div>
           </div>
@@ -250,7 +250,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-semibold mb-4" style={{ color: '#305F72' }}>Setup Quiz</h2>
+                <h2 className="text-xl font-semibold mb-4" style={{ color: '#305F72' }}>Thiết lập Quiz</h2>
 
                 {/* Only show upload options if no pre-loaded quiz or user cleared it */}
                 {!quiz && (
@@ -264,7 +264,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                         style={activeTab === 'upload' ? { background: 'linear-gradient(to right, #568EA6, #305F72)' } : { color: '#305F72' }}
                       >
                         <Upload className="w-4 h-4" />
-                        Upload File
+                        Tải tệp
                       </button>
                       <button
                         onClick={() => setActiveTab('paste')}
@@ -273,7 +273,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                         style={activeTab === 'paste' ? { background: 'linear-gradient(to right, #568EA6, #305F72)' } : { color: '#305F72' }}
                       >
                         <FileText className="w-4 h-4" />
-                        Paste JSON
+                        Dán JSON
                       </button>
                     </div>
 
@@ -289,8 +289,8 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                           style={{ borderColor: '#F0B7A4' }}
                         >
                           <Upload className="w-10 h-10 mx-auto mb-3 group-hover:opacity-80 transition-colors" style={{ color: '#568EA6' }} />
-                          <span className="font-semibold block mb-2" style={{ color: '#568EA6' }}>Upload JSON Quiz File</span>
-                          <span className="text-sm" style={{ color: '#305F72', opacity: 0.7 }}>Click to browse or drag and drop</span>
+                          <span className="font-semibold block mb-2" style={{ color: '#568EA6' }}>Tải tệp Quiz JSON</span>
+                          <span className="text-sm" style={{ color: '#305F72', opacity: 0.7 }}>Nhấp để chọn hoặc kéo thả tệp</span>
                         </button>
                         <input
                           ref={fileInputRef}
@@ -308,7 +308,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                         <textarea
                           value={jsonText}
                           onChange={(e) => setJsonText(e.target.value)}
-                          placeholder="Paste your quiz JSON here..."
+                          placeholder="Dán JSON của Quiz vào đây..."
                           className="w-full h-48 bg-white border rounded-xl p-4 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm focus:ring-blue-500"
                           style={{
                             color: '#305F72',
@@ -323,7 +323,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                           }}
                         >
                           <Copy className="w-4 h-4" />
-                          Parse JSON
+                          Phân tích JSON
                         </button>
                       </div>
                     )}
@@ -340,7 +340,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                           backgroundColor: '#F18C8E'
                         }}
                       >
-                        📝 Load Sample Quiz
+                        📝 Tải Quiz mẫu
                       </button>
                     </div>
                   </>
@@ -350,19 +350,19 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                 {quiz && (
                   <div className="bg-white p-6 rounded-xl border shadow-sm" style={{ borderColor: '#10b981' }}>
                     <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-lg font-semibold text-green-800">✅ Quiz Ready</h3>
+                      <h3 className="text-lg font-semibold text-green-800">✅ Quiz sẵn sàng</h3>
                       {!preloadedQuiz && (
                         <button
                           onClick={clearQuiz}
                           className="text-green-600 hover:text-green-800 text-sm font-medium"
                         >
-                          Clear Quiz
+                          Xóa Quiz
                         </button>
                       )}
                     </div>
                     <div className="text-green-700">
                       <div className="font-semibold text-lg mb-1">{quiz.title}</div>
-                      <div className="text-sm">{quiz.questions.length} questions • Ready to host</div>
+                      <div className="text-sm">{quiz.questions.length} câu hỏi • Sẵn sàng tổ chức</div>
                     </div>
                   </div>
                 )}
@@ -370,7 +370,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                 {/* JSON format help - only show if no quiz loaded */}
                 {!quiz && (
                   <div className="bg-white p-4 rounded-xl border shadow-sm" style={{ borderColor: '#F0B7A4' }}>
-                    <h3 className="font-semibold mb-2" style={{ color: '#305F72' }}>Expected JSON Format:</h3>
+                    <h3 className="font-semibold mb-2" style={{ color: '#305F72' }}>Định dạng JSON yêu cầu:</h3>
                     <pre className="text-xs bg-white p-3 rounded-lg overflow-x-auto border" style={{ color: '#305F72', borderColor: '#F0B7A4' }}>
                       {JSON.stringify({
                         title: "Quiz Title",
@@ -393,7 +393,7 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                   <h3 className="font-semibold text-xl mb-2" style={{ color: '#305F72' }}>{quiz.title}</h3>
                   <div className="flex items-center gap-4 mb-4">
                     <span className="text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg" style={{ background: 'linear-gradient(to right, #568EA6, #305F72)' }}>
-                      {quiz.questions?.length} questions
+                      {quiz.questions?.length} câu hỏi
                     </span>
                     <span className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>
                       Multiplayer Game
@@ -406,21 +406,21 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
                   </div>
 
                   <div className="space-y-4">
-                    <h4 className="font-semibold" style={{ color: '#305F72' }}>Question Preview:</h4>
+                    <h4 className="font-semibold" style={{ color: '#305F72' }}>Xem trước câu hỏi:</h4>
                     {quiz.questions?.slice(0, 3).map((q, i) => (
                       <div key={i} className="bg-white p-4 rounded-xl border-l-4 border shadow-sm" style={{ borderLeftColor: '#568EA6', borderColor: '#F0B7A4' }}>
                         <div className="font-semibold text-sm mb-2" style={{ color: '#305F72' }}>
                           {i + 1}. {q.question}
                         </div>
                         <div className="text-xs font-medium" style={{ color: '#305F72', opacity: 0.8 }}>
-                          {q.options.length} options • {q.time}s timer
+                          {q.options.length} lựa chọn • {q.time}s tính giờ
                         </div>
                       </div>
                     ))}
 
                     {quiz.questions && quiz.questions.length > 3 && (
                       <div className="text-xs text-center font-medium" style={{ color: '#305F72', opacity: 0.6 }}>
-                        ... and {quiz.questions.length - 3} more questions
+                        ... và {quiz.questions.length - 3} câu hỏi nữa
                       </div>
                     )}
                   </div>
@@ -428,8 +428,8 @@ export default function HostDashboard({ onStartGame, preloadedQuiz, onBack }: Ho
               ) : (
                 <div className="text-center bg-white p-8 rounded-xl border shadow-sm" style={{ borderColor: '#F0B7A4' }}>
                   <div className="text-6xl mb-4">🎯</div>
-                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#305F72' }}>Ready to Host?</h3>
-                  <p className="mb-4 font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Upload a quiz file, paste JSON content, or try the sample quiz to get started.</p>
+                  <h3 className="text-xl font-semibold mb-2" style={{ color: '#305F72' }}>Sẵn sàng tổ chức?</h3>
+                  <p className="mb-4 font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Tải tệp Quiz lên, dán nội dung JSON hoặc thử Quiz mẫu để bắt đầu.</p>
                   <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.6 }}>
                     Create a game PIN and manage players in real-time
                   </div>

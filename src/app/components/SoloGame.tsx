@@ -126,7 +126,7 @@ export default function SoloGame({ quiz, isFlashcardMode, onRestart }: SoloGameP
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 border" style={{ borderColor: '#F0B7A4' }}>
             <div className="text-center">
               <div className="text-6xl mb-4">{scoreGrade.emoji}</div>
-              <h1 className="text-3xl font-bold mb-2" style={{ color: '#305F72' }}>Study Complete!</h1>
+              <h1 className="text-3xl font-bold mb-2" style={{ color: '#305F72' }}>Hoàn thành học tập!</h1>
               <h2 className="text-xl mb-8 font-medium" style={{ color: '#305F72', opacity: 0.8 }}>{quiz.title}</h2>
 
               <div className="bg-white p-6 rounded-xl mb-8 border shadow-sm" style={{ borderColor: '#F0B7A4' }}>
@@ -135,31 +135,31 @@ export default function SoloGame({ quiz, isFlashcardMode, onRestart }: SoloGameP
                     <div className="text-3xl font-bold" style={{ color: scoreGrade.color }}>
                       {getScorePercentage()}%
                     </div>
-                    <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Score</div>
+                    <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Điểm</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold" style={{ color: scoreGrade.color }}>
                       {scoreGrade.grade}
                     </div>
-                    <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Grade</div>
+                    <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Xếp loại</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold" style={{ color: '#568EA6' }}>
                       {stats.correctAnswers}/{stats.totalQuestions}
                     </div>
-                    <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Correct</div>
+                    <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Đúng</div>
                   </div>
                   <div className="text-center">
                     <div className="text-3xl font-bold" style={{ color: '#F18C8E' }}>
                       {getTotalTimeSpent()}
                     </div>
-                    <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Time</div>
+                    <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>Thời gian</div>
                   </div>
                 </div>
               </div>
 
               <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-4" style={{ color: '#305F72' }}>Question Review</h3>
+                <h3 className="text-xl font-semibold mb-4" style={{ color: '#305F72' }}>Xem lại câu hỏi</h3>
                 <div className="space-y-3 max-h-60 overflow-y-auto">
                   {quiz.questions.map((question, index) => {
                     const answer = stats.answers[index];
@@ -176,10 +176,10 @@ export default function SoloGame({ quiz, isFlashcardMode, onRestart }: SoloGameP
                               {index + 1}. {question.question}
                             </div>
                             <div className="text-xs font-medium" style={{ color: '#305F72', opacity: 0.8 }}>
-                              Your answer: {question.options[answer?.selected || 0]}
+                              Câu trả lời của bạn: {question.options[answer?.selected || 0]}
                               {!answer?.correct && (
                                 <span className="text-green-700 ml-2">
-                                  (Correct: {question.options[question.correct]})
+                                  (Đúng: {question.options[question.correct]})
                                 </span>
                               )}
                             </div>
@@ -198,7 +198,7 @@ export default function SoloGame({ quiz, isFlashcardMode, onRestart }: SoloGameP
                   style={{ background: 'linear-gradient(to right, #568EA6, #305F72)' }}
                 >
                   <RotateCcw className="w-5 h-5" />
-                  Study Again
+                  Học lại
                 </button>
               </div>
             </div>
@@ -216,10 +216,10 @@ export default function SoloGame({ quiz, isFlashcardMode, onRestart }: SoloGameP
           <div className="mb-6">
             <div className="flex justify-between items-center mb-4">
               <span className="text-lg font-semibold" style={{ color: '#305F72' }}>
-                Question {currentQuestion + 1} of {quiz.questions.length}
+                Câu hỏi {currentQuestion + 1} / {quiz.questions.length}
               </span>
               <div className="text-sm font-medium" style={{ color: '#305F72', opacity: 0.8 }}>
-                Score: {stats.correctAnswers}/{currentQuestion} correct
+                Điểm: {stats.correctAnswers}/{currentQuestion} câu đúng
               </div>
             </div>
 
@@ -233,7 +233,7 @@ export default function SoloGame({ quiz, isFlashcardMode, onRestart }: SoloGameP
               ></div>
             </div>
             <div className="text-xs font-medium" style={{ color: '#305F72', opacity: 0.6 }}>
-              Progress: {Math.round(((currentQuestion + 1) / quiz.questions.length) * 100)}%
+                Tiến độ: {Math.round(((currentQuestion + 1) / quiz.questions.length) * 100)}%
             </div>
           </div>
 
@@ -268,7 +268,7 @@ export default function SoloGame({ quiz, isFlashcardMode, onRestart }: SoloGameP
               </div>
 
               <div className="mt-6 text-sm font-medium bg-white p-3 rounded-lg border" style={{ color: '#305F72', borderColor: '#F0B7A4' }}>
-                💡 Take your time - no pressure in study mode!
+                💡 Cứ từ từ, không áp lực trong chế độ học!
               </div>
             </div>
           ) : (
@@ -276,30 +276,30 @@ export default function SoloGame({ quiz, isFlashcardMode, onRestart }: SoloGameP
             <div className="text-center">
               <div className={`bg-white p-6 rounded-xl mb-6 border shadow-sm`} style={{ borderColor: stats.answers[currentQuestion]?.correct ? '#10b981' : '#ef4444' }}>
                 <div className={`text-3xl font-bold mb-2`} style={{ color: stats.answers[currentQuestion]?.correct ? '#10b981' : '#ef4444' }}>
-                  {stats.answers[currentQuestion]?.correct ? '🎉 Correct!' : '❌ Incorrect'}
+                  {stats.answers[currentQuestion]?.correct ? '🎉 Chính xác!' : '❌ Chưa đúng'}
                 </div>
 
                 {!stats.answers[currentQuestion]?.correct && (
                   <div className="mb-3 font-medium" style={{ color: '#305F72' }}>
-                    You selected: <span className="font-semibold">{currentQ.options[selectedAnswer!]}</span>
+                    Bạn đã chọn: <span className="font-semibold">{currentQ.options[selectedAnswer!]}</span>
                   </div>
                 )}
 
                 <div style={{ color: '#305F72' }}>
-                  <span className="font-medium" style={{ opacity: 0.8 }}>Correct answer:</span>{' '}
+                  <span className="font-medium" style={{ opacity: 0.8 }}>Đáp án đúng:</span>{' '}
                   <span className="font-semibold text-green-700">{currentQ.options[currentQ.correct]}</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="bg-white p-4 rounded-xl border shadow-sm" style={{ borderColor: '#568EA6' }}>
-                  <div className="text-sm mb-1 font-medium" style={{ color: '#568EA6' }}>Current Score</div>
+                  <div className="text-sm mb-1 font-medium" style={{ color: '#568EA6' }}>Điểm hiện tại</div>
                   <div className="text-2xl font-bold" style={{ color: '#568EA6' }}>
                     {Math.round((stats.correctAnswers / (currentQuestion + 1)) * 100)}%
                   </div>
                 </div>
                 <div className="bg-white p-4 rounded-xl border shadow-sm" style={{ borderColor: '#F18C8E' }}>
-                  <div className="text-sm mb-1 font-medium" style={{ color: '#F18C8E' }}>Questions Left</div>
+                  <div className="text-sm mb-1 font-medium" style={{ color: '#F18C8E' }}>Câu hỏi còn lại</div>
                   <div className="text-2xl font-bold" style={{ color: '#F18C8E' }}>
                     {quiz.questions.length - currentQuestion - 1}
                   </div>
@@ -314,11 +314,11 @@ export default function SoloGame({ quiz, isFlashcardMode, onRestart }: SoloGameP
                 {isLastQuestion ? (
                   <>
                     <Trophy className="w-5 h-5" />
-                    View Results
+                    Xem kết quả
                   </>
                 ) : (
                   <>
-                    Next Question
+                    Câu tiếp theo
                     <ArrowRight className="w-5 h-5" />
                   </>
                 )}

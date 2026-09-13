@@ -291,7 +291,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#F0F4F8' }}>
         <div className="bg-white/90 rounded-xl shadow-2xl p-8 text-center border" style={{ borderColor: '#F0B7A4' }}>
-          <div className="text-xl" style={{ color: '#305F72' }}>Loading game data...</div>
+          <div className="text-xl" style={{ color: '#305F72' }}>Đang tải dữ liệu trò chơi...</div>
         </div>
       </div>
     );
@@ -301,7 +301,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#F0F4F8' }}>
         <div className="bg-white/90 rounded-xl shadow-2xl p-8 text-center border" style={{ borderColor: '#F0B7A4' }}>
-          <div className="text-red-600 text-xl mb-4">❌ Error loading game</div>
+          <div className="text-red-600 text-xl mb-4">❌ Lỗi tải trò chơi</div>
           <div style={{ color: '#305F72', opacity: 0.8 }}>{error}</div>
         </div>
       </div>
@@ -315,7 +315,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold mb-2" style={{ color: '#305F72' }}>{quiz.title}</h1>
-              <p style={{ color: '#305F72', opacity: 0.8 }}>Total Questions: {totalQuestions}</p>
+              <p style={{ color: '#305F72', opacity: 0.8 }}>Tổng số câu hỏi: {totalQuestions}</p>
             </div>
             <div className="flex flex-wrap items-center gap-3">
               <div className="px-4 py-2 rounded-lg border" style={{ backgroundColor: '#F0B7A4', borderColor: '#F0B7A4' }}>
@@ -333,7 +333,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
                   title="Delete game from database"
                 >
                   <Trash2 className="w-4 h-4" />
-                  <span className="hidden sm:inline">Delete Game</span>
+                  <span className="hidden sm:inline">Xóa trò chơi</span>
                 </button>
               )}
             </div>
@@ -344,11 +344,11 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
             <div className="flex items-center gap-2">
               <AlertCircle className="w-4 h-4" style={{ color: '#568EA6' }} />
               <span className="text-sm" style={{ color: '#305F72' }}>
-                <strong>Auto-cleanup:</strong> {
+                <strong>Tự động dọn dẹp:</strong> {
                   gameStatus === 'waiting' ? 'Game will be deleted in 10min if no players join' :
-                    gameStatus === 'question' || gameStatus === 'results' ? 'Game will be deleted after 30min of inactivity' :
+                    gameStatus === 'question' || gameStatus === 'results' ? 'Trò chơi sẽ bị xóa sau 30 phút không hoạt động' :
                       gameStatus === 'finished' ? 'Game will be deleted in 5min' :
-                        'Monitoring for auto-cleanup'
+                        'Đang theo dõi việc tự động dọn dẹp'
                 }
               </span>
             </div>
@@ -356,9 +356,9 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
 
           {gameStatus === 'waiting' && (
             <div className="text-center">
-              <h2 className="text-2xl font-semibold mb-6" style={{ color: '#305F72' }}>Waiting for players...</h2>
+              <h2 className="text-2xl font-semibold mb-6" style={{ color: '#305F72' }}>Đang chờ người chơi...</h2>
               <div className="mb-6" style={{ color: '#305F72', opacity: 0.8 }}>
-                Quiz ready: <strong style={{ color: '#305F72' }}>{totalQuestions} questions</strong>
+                Quiz sẵn sàng: <strong style={{ color: '#305F72' }}>{totalQuestions} câu hỏi</strong>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                 {Object.entries(players).map(([id, player]) => (
@@ -373,7 +373,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
                 className="text-white py-4 px-8 rounded-lg transition-all duration-200 font-semibold shadow-lg hover:shadow-xl disabled:cursor-not-allowed"
                 style={{ backgroundColor: playerCount === 0 ? '#9ca3af' : '#10b981' }}
               >
-                Start Game ({totalQuestions} Questions)
+                Bắt đầu trò chơi ({totalQuestions} câu hỏi)
               </button>
             </div>
           )}
@@ -382,7 +382,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
             <div className="text-center">
               <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
                 <span className="text-lg font-semibold" style={{ color: '#305F72' }}>
-                  Question {currentQuestion + 1} of {totalQuestions}
+                  Câu hỏi {currentQuestion + 1} / {totalQuestions}
                 </span>
                 <div className="flex items-center gap-2 bg-red-50 px-4 py-2 rounded-lg border border-red-200">
                   <Clock className="w-5 h-5 text-red-600" />
@@ -401,7 +401,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
                   ></div>
                 </div>
                 <div className="text-sm" style={{ color: '#305F72', opacity: 0.8 }}>
-                  Progress: {currentQuestion + 1} of {totalQuestions} questions
+                  Tiến độ: {currentQuestion + 1} / {totalQuestions} câu hỏi
                 </div>
               </div>
 
@@ -429,7 +429,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
                 {Object.values(players).filter(p => p.answers?.[currentQuestion] !== undefined).length === playerCount && playerCount > 0 && (
                   <div className="text-green-600 text-sm mt-1 flex items-center justify-center gap-2">
                     <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    All answered! Moving to results...
+                    Đã trả lời hết! Đang chuyển tới kết quả...
                   </div>
                 )}
               </div>
@@ -438,10 +438,10 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
 
           {gameStatus === 'results' && currentQ && (
             <div className="text-center">
-              <h2 className="text-2xl font-semibold mb-6" style={{ color: '#305F72' }}>Question {currentQuestion + 1} Results</h2>
+              <h2 className="text-2xl font-semibold mb-6" style={{ color: '#305F72' }}>Kết quả câu hỏi {currentQuestion + 1}</h2>
               <div className="bg-green-50 p-6 rounded-xl mb-8 border border-green-200">
                 <div className="text-lg font-semibold text-green-700 mb-2">
-                  Correct Answer: {currentQ.options[currentQ.correct]}
+                  Đáp án đúng: {currentQ.options[currentQ.correct]}
                 </div>
                 <div className="text-green-600">
                   {correctAnswers} / {playerCount} got it right
@@ -449,7 +449,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
               </div>
 
               <div className="mb-8">
-                <h3 className="text-xl font-semibold mb-4" style={{ color: '#305F72' }}>Current Leaderboard</h3>
+                <h3 className="text-xl font-semibold mb-4" style={{ color: '#305F72' }}>Bảng xếp hạng hiện tại</h3>
                 <div className="space-y-3">
                   {getLeaderboard(players).slice(0, 5).map((entry, index) => (
                     <div key={entry.playerId} className="flex justify-between items-center bg-white p-4 rounded-lg border" style={{ borderColor: '#F0B7A4' }}>
@@ -467,7 +467,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
                 <div className="bg-white p-4 rounded-lg border" style={{ borderColor: '#F0B7A4' }}>
                   <div className="font-semibold" style={{ color: '#305F72' }}>
                     {currentQuestion + 1 < totalQuestions
-                      ? `Next: Question ${currentQuestion + 2} of ${totalQuestions}`
+                      ? `Tiếp theo: Câu hỏi ${currentQuestion + 2} / ${totalQuestions}`
                       : 'This was the final question!'
                     }
                   </div>
@@ -480,8 +480,8 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
                 style={{ backgroundColor: '#568EA6' }}
               >
                 {currentQuestion + 1 < totalQuestions
-                  ? `Next Question (${currentQuestion + 2}/${totalQuestions})`
-                  : 'End Game'
+                  ? `Câu hỏi tiếp theo (${currentQuestion + 2}/${totalQuestions})`
+                  : 'Kết thúc trò chơi'
                 }
               </button>
             </div>
@@ -490,7 +490,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
           {gameStatus === 'finished' && (
             <div className="text-center">
               <Trophy className="w-16 h-16 mx-auto mb-4" style={{ color: '#F18C8E' }} />
-              <h2 className="text-3xl font-bold mb-4" style={{ color: '#305F72' }}>Game Finished!</h2>
+              <h2 className="text-3xl font-bold mb-4" style={{ color: '#305F72' }}>Trò chơi đã kết thúc!</h2>
               <div className="text-lg mb-4" style={{ color: '#305F72', opacity: 0.8 }}>
                 Completed all {totalQuestions} questions with {playerCount} players
               </div>
@@ -503,7 +503,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
               </div>
 
               <div className="bg-white p-6 rounded-xl mb-8 border" style={{ borderColor: '#F0B7A4' }}>
-                <h3 className="text-2xl font-bold mb-6" style={{ color: '#305F72' }}>Final Leaderboard</h3>
+                <h3 className="text-2xl font-bold mb-6" style={{ color: '#305F72' }}>Bảng xếp hạng cuối cùng</h3>
                 <div className="space-y-4">
                   {getLeaderboard(players).map((entry, index) => (
                     <div key={entry.playerId} className={`flex justify-between items-center p-4 rounded-lg border ${index === 0 ? 'bg-yellow-50 border-yellow-300' :
@@ -529,7 +529,7 @@ export default function GameHost({ gamePin, quiz }: GameHostProps) {
                   className="bg-red-500 hover:bg-red-600 text-white py-3 px-6 rounded-lg transition-all duration-200 font-semibold shadow-lg hover:shadow-xl flex items-center gap-2"
                 >
                   <Trash2 className="w-4 h-4" />
-                  Delete Game Now
+                  Xóa trò chơi ngay
                 </button>
                 <div className="text-sm" style={{ color: '#305F72', opacity: 0.6 }}>
                   or wait for automatic cleanup

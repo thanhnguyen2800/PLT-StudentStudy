@@ -188,13 +188,13 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-amber-50 to-orange-50 flex items-center justify-center p-4">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">Please Sign In</h2>
-          <p className="text-slate-600 mb-6">You need to sign in to create or edit quizzes.</p>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4">Vui lòng đăng nhập</h2>
+          <p className="text-slate-600 mb-6">Bạn cần đăng nhập để tạo hoặc chỉnh sửa Quiz.</p>
           <button
             onClick={onBack}
             className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
           >
-            Back to Menu
+            Về menu
           </button>
         </div>
       </div>
@@ -208,17 +208,17 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-slate-800 mb-2">
-              {editingQuiz ? '✏️ Edit Quiz' : '📝 Create Quiz'}
+              {editingQuiz ? '✏️ Chỉnh sửa Quiz' : '📝 Tạo Quiz'}
             </h1>
             <p className="text-slate-600">
-              {editingQuiz ? 'Modify your existing quiz' : 'Build your quiz from scratch or paste JSON'}
+              {editingQuiz ? 'Chỉnh sửa Quiz hiện có' : 'Tạo Quiz từ đầu hoặc dán JSON'}
             </p>
           </div>
           <button
             onClick={onBack}
             className="bg-white/90 hover:bg-white text-slate-700 px-6 py-3 rounded-lg transition-all duration-200 border border-slate-300 shadow-sm"
           >
-            ← Back
+            ← Quay lại
           </button>
         </div>
 
@@ -232,7 +232,7 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                 : 'text-slate-600 hover:text-slate-800 hover:bg-white/70'
             }`}
           >
-            ✏️ Edit Quiz
+            ✏️ Chỉnh sửa Quiz
           </button>
           <button
             onClick={() => setActiveTab('paste')}
@@ -242,14 +242,14 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                 : 'text-slate-600 hover:text-slate-800 hover:bg-white/70'
             }`}
           >
-            📋 Paste JSON
+            📋 Dán JSON
           </button>
         </div>
 
         {/* Paste JSON Tab */}
         {activeTab === 'paste' && (
           <div className="bg-white/90 backdrop-blur-sm p-8 rounded-xl border border-slate-200 shadow-lg mb-8">
-            <h2 className="text-xl font-semibold text-slate-800 mb-4">Paste Quiz JSON</h2>
+            <h2 className="text-xl font-semibold text-slate-800 mb-4">Dán JSON của Quiz</h2>
             <textarea
               value={pasteText}
               onChange={(e) => setPasteText(e.target.value)}
@@ -274,13 +274,13 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                 disabled={!pasteText.trim()}
                 className="bg-orange-500 hover:bg-orange-600 disabled:bg-slate-400 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 disabled:cursor-not-allowed"
               >
-                Import Quiz
+                Nhập Quiz
               </button>
               <button
                 onClick={() => setPasteText('')}
                 className="bg-slate-300 hover:bg-slate-400 text-slate-700 px-6 py-3 rounded-lg font-semibold transition-all duration-200"
               >
-                Clear
+                Xóa
               </button>
             </div>
           </div>
@@ -291,25 +291,25 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
           <div className="space-y-8">
             {/* Quiz Settings */}
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-slate-200 shadow-lg">
-              <h2 className="text-xl font-semibold text-slate-800 mb-4">Quiz Settings</h2>
+              <h2 className="text-xl font-semibold text-slate-800 mb-4">Cài đặt Quiz</h2>
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Quiz Title *
+                    Tiêu đề Quiz *
                   </label>
                   <input
                     type="text"
                     value={quiz.title}
                     onChange={(e) => setQuiz(prev => ({ ...prev, title: e.target.value }))}
                     className="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-500 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-colors"
-                    placeholder="Enter quiz title"
+                    placeholder="Nhập tiêu đề Quiz"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Tags (comma separated)
+                    Thẻ (cách nhau bằng dấu phẩy)
                   </label>
                   <input
                     type="text"
@@ -330,7 +330,7 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                   className="w-4 h-4 text-orange-600 bg-white border-slate-300 rounded focus:ring-orange-500"
                 />
                 <label htmlFor="make-public" className="text-sm text-slate-700">
-                  Make this quiz public (others can discover and play it)
+                    Công khai Quiz này (người khác có thể tìm và chơi)
                 </label>
               </div>
             </div>
@@ -339,7 +339,7 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
             <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-slate-200 shadow-lg">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold text-slate-800">
-                  Questions ({quiz.questions.length})
+                  Câu hỏi ({quiz.questions.length})
                 </h2>
                 <button
                   onClick={addQuestion}
@@ -348,20 +348,20 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
-                  Add Question
+                  Thêm câu hỏi
                 </button>
               </div>
 
               {quiz.questions.length === 0 ? (
                 <div className="text-center py-12">
                   <div className="text-6xl mb-4">❓</div>
-                  <h3 className="text-xl font-semibold text-slate-800 mb-2">No questions yet</h3>
-                  <p className="text-slate-600 mb-6">Add your first question to get started</p>
+                  <h3 className="text-xl font-semibold text-slate-800 mb-2">Chưa có câu hỏi</h3>
+                  <p className="text-slate-600 mb-6">Thêm câu hỏi đầu tiên để bắt đầu</p>
                   <button
                     onClick={addQuestion}
                     className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
                   >
-                    Add First Question
+                    Thêm câu hỏi đầu tiên
                   </button>
                 </div>
               ) : (
@@ -369,13 +369,13 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                   {quiz.questions.map((question, index) => (
                     <div key={index} className="bg-slate-50 p-6 rounded-lg border border-slate-200">
                       <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-lg font-semibold text-slate-800">Question {index + 1}</h3>
+                        <h3 className="text-lg font-semibold text-slate-800">Câu hỏi {index + 1}</h3>
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => moveQuestion(index, 'up')}
                             disabled={index === 0}
                             className="p-2 text-slate-500 hover:text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                            title="Move up"
+                            title="Di chuyển lên"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
@@ -385,7 +385,7 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                             onClick={() => moveQuestion(index, 'down')}
                             disabled={index === quiz.questions.length - 1}
                             className="p-2 text-slate-500 hover:text-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                            title="Move down"
+                            title="Di chuyển xuống"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -394,7 +394,7 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                           <button
                             onClick={() => deleteQuestion(index)}
                             className="p-2 text-red-500 hover:text-red-600 transition-colors"
-                            title="Delete question"
+                            title="Xóa câu hỏi"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -407,21 +407,21 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                         {/* Question Text */}
                         <div>
                           <label className="block text-sm font-medium text-slate-700 mb-2">
-                            Question Text *
+                            Nội dung câu hỏi *
                           </label>
                           <textarea
                             value={question.question}
                             onChange={(e) => updateQuestion(index, { question: e.target.value })}
                             className="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-500 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-colors resize-none"
                             rows={2}
-                            placeholder="Enter your question"
+                            placeholder="Nhập câu hỏi"
                           />
                         </div>
 
                         {/* Options */}
                         <div>
                           <label className="block text-sm font-medium text-slate-700 mb-2">
-                            Answer Options *
+                            Các lựa chọn trả lời *
                           </label>
                           <div className="grid md:grid-cols-2 gap-3">
                             {question.options.map((option, optionIndex) => (
@@ -433,7 +433,7 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                                     checked={question.correct === optionIndex}
                                     onChange={() => updateQuestion(index, { correct: optionIndex })}
                                     className="w-4 h-4 text-green-600 bg-white border-slate-300 focus:ring-green-500"
-                                    title="Mark as correct answer"
+                                    title="Đánh dấu là đáp án đúng"
                                   />
                                   <input
                                     type="text"
@@ -449,7 +449,7 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                                 </div>
                                 {question.correct === optionIndex && (
                                   <div className="absolute -right-2 -top-1 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
-                                    ✓ Correct
+                                    ✓ Đúng
                                   </div>
                                 )}
                               </div>
@@ -460,7 +460,7 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                         {/* Time Limit */}
                         <div>
                           <label className="block text-sm font-medium text-slate-700 mb-2">
-                            Time Limit (seconds)
+                            Giới hạn thời gian (giây)
                           </label>
                           <input
                             type="number"
@@ -483,7 +483,7 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
               <div className="bg-white/90 backdrop-blur-sm p-6 rounded-xl border border-slate-200 shadow-lg">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-800 mb-1">Ready to save?</h3>
+                    <h3 className="text-lg font-semibold text-slate-800 mb-1">Sẵn sàng lưu?</h3>
                     <p className="text-slate-600 text-sm">
                       {quiz.questions.length} question{quiz.questions.length !== 1 ? 's' : ''} • 
                       {isPublic ? ' Public' : ' Private'} • 
@@ -498,14 +498,14 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
                     {saving ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        Saving...
+                        Đang lưu...
                       </>
                     ) : (
                       <>
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12" />
                         </svg>
-                        {editingQuiz ? 'Update Quiz' : 'Save Quiz'}
+                        {editingQuiz ? 'Cập nhật Quiz' : 'Lưu Quiz'}
                       </>
                     )}
                   </button>

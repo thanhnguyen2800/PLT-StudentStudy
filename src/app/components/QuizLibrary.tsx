@@ -195,13 +195,13 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-amber-50 to-orange-50 flex items-center justify-center p-4">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">Please Sign In</h2>
-          <p className="text-slate-600 mb-6">You need to sign in to access your quiz library.</p>
+          <h2 className="text-2xl font-bold text-slate-800 mb-4">Vui lòng đăng nhập</h2>
+          <p className="text-slate-600 mb-6">Bạn cần đăng nhập để truy cập thư viện Quiz.</p>
           <button
             onClick={onBack}
             className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
           >
-            Back to Menu
+            Về menu
           </button>
         </div>
       </div>
@@ -210,19 +210,19 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
 
   const getPageTitle = () => {
     switch (mode) {
-      case 'host': return 'Choose a quiz to host';
-      case 'solo': return 'Select a quiz for solo study';
-      case 'manage': return 'Manage your quiz collection';
-      default: return 'Quiz Library';
+      case 'host': return 'Chọn Quiz để tổ chức';
+      case 'solo': return 'Chọn Quiz để tự học';
+      case 'manage': return 'Quản lý bộ sưu tập Quiz';
+      default: return 'Thư viện Quiz';
     }
   };
 
   const getSelectButtonText = () => {
     switch (mode) {
-      case 'host': return 'Host Quiz';
-      case 'solo': return 'Study';
-      case 'manage': return 'View';
-      default: return 'Select';
+      case 'host': return 'Tổ chức Quiz';
+      case 'solo': return 'Học';
+      case 'manage': return 'Xem';
+      default: return 'Chọn';
     }
   };
 
@@ -233,7 +233,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-slate-800 mb-2">
-              📚 Quiz Library
+              📚 Thư viện Quiz
             </h1>
             <p className="text-slate-600">
               {getPageTitle()}
@@ -243,7 +243,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
             onClick={onBack}
             className="bg-white/90 hover:bg-white text-slate-700 px-6 py-3 rounded-lg transition-all duration-200 border border-slate-300 shadow-sm"
           >
-            ← Back
+            ← Quay lại
           </button>
         </div>
 
@@ -257,7 +257,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                 : 'text-slate-600 hover:text-slate-800 hover:bg-white/70'
             }`}
           >
-            📝 My Quizzes ({quizzes.length})
+            📝 Quiz của tôi ({quizzes.length})
           </button>
           <button
             onClick={() => setActiveTab('public')}
@@ -267,7 +267,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                 : 'text-slate-600 hover:text-slate-800 hover:bg-white/70'
             }`}
           >
-            🌍 Public Quizzes
+            🌍 Quiz công khai
           </button>
           <button
             onClick={() => setActiveTab('upload')}
@@ -277,14 +277,14 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                 : 'text-slate-600 hover:text-slate-800 hover:bg-white/70'
             }`}
           >
-            ⬆️ Upload Quiz
+            ⬆️ Tải Quiz lên
           </button>
         </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-12">
             <div className="w-8 h-8 border-2 border-orange-200 border-t-orange-500 rounded-full animate-spin"></div>
-            <span className="ml-3 text-slate-600">Loading quizzes...</span>
+            <span className="ml-3 text-slate-600">Đang tải Quiz...</span>
           </div>
         ) : (
           <>
@@ -294,13 +294,13 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                 {quizzes.length === 0 ? (
                   <div className="text-center py-12">
                     <div className="text-6xl mb-4">📝</div>
-                    <h3 className="text-xl font-semibold text-slate-800 mb-2">No quizzes yet</h3>
-                    <p className="text-slate-600 mb-6">Upload your first quiz to get started!</p>
+                    <h3 className="text-xl font-semibold text-slate-800 mb-2">Chưa có Quiz</h3>
+                    <p className="text-slate-600 mb-6">Tải Quiz đầu tiên lên để bắt đầu!</p>
                     <button
                       onClick={() => setActiveTab('upload')}
                       className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
                     >
-                      Upload Quiz
+                      Tải Quiz lên
                     </button>
                   </div>
                 ) : (
@@ -329,8 +329,8 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                 {publicQuizzes.length === 0 ? (
                   <div className="text-center py-12">
                     <div className="text-6xl mb-4">🌍</div>
-                    <h3 className="text-xl font-semibold text-slate-800 mb-2">No public quizzes available</h3>
-                    <p className="text-slate-600">Check back later for community quizzes!</p>
+                    <h3 className="text-xl font-semibold text-slate-800 mb-2">Chưa có Quiz công khai</h3>
+                    <p className="text-slate-600">Hãy quay lại sau để xem Quiz cộng đồng!</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -354,7 +354,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
             {activeTab === 'upload' && (
               <div className="max-w-2xl mx-auto">
                 <div className="bg-white/90 backdrop-blur-sm p-8 rounded-xl border border-slate-200 shadow-lg">
-                  <h2 className="text-2xl font-semibold text-slate-800 mb-6">Upload New Quiz</h2>
+                  <h2 className="text-2xl font-semibold text-slate-800 mb-6">Tải Quiz mới lên</h2>
                   
                   {!uploadedQuiz ? (
                     <div>
@@ -368,7 +368,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                               : 'text-slate-600 hover:text-slate-800 hover:bg-white'
                           }`}
                         >
-                          📁 Upload File
+                          📁 Tải tệp
                         </button>
                         <button
                           onClick={() => setUploadMethod('paste')}
@@ -378,7 +378,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                               : 'text-slate-600 hover:text-slate-800 hover:bg-white'
                           }`}
                         >
-                          📋 Paste JSON
+                          📋 Dán JSON
                         </button>
                       </div>
 
@@ -386,8 +386,8 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                       {uploadMethod === 'file' && (
                         <div className="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center bg-slate-50">
                           <div className="text-4xl mb-4">📁</div>
-                          <h3 className="text-lg font-medium text-slate-800 mb-2">Choose Quiz File</h3>
-                          <p className="text-slate-600 mb-4">Upload a JSON file containing your quiz</p>
+                          <h3 className="text-lg font-medium text-slate-800 mb-2">Chọn tệp Quiz</h3>
+                          <p className="text-slate-600 mb-4">Tải tệp JSON chứa Quiz của bạn</p>
                           <input
                             type="file"
                             accept=".json"
@@ -399,7 +399,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                             htmlFor="quiz-upload"
                             className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold cursor-pointer transition-all duration-200 inline-block"
                           >
-                            Select File
+                            Chọn tệp
                           </label>
                         </div>
                       )}
@@ -407,7 +407,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                       {/* Paste JSON Method */}
                       {uploadMethod === 'paste' && (
                         <div>
-                          <h3 className="text-lg font-medium text-slate-800 mb-4">Paste Quiz JSON</h3>
+                          <h3 className="text-lg font-medium text-slate-800 mb-4">Dán JSON của Quiz</h3>
                           <textarea
                             value={pasteText}
                             onChange={(e) => setPasteText(e.target.value)}
@@ -432,55 +432,55 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                               disabled={!pasteText.trim()}
                               className="bg-orange-500 hover:bg-orange-600 disabled:bg-slate-400 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 disabled:cursor-not-allowed"
                             >
-                              Import Quiz
+                              Nhập Quiz
                             </button>
                             <button
                               onClick={() => setPasteText('')}
                               className="bg-slate-300 hover:bg-slate-400 text-slate-700 px-6 py-3 rounded-lg font-semibold transition-all duration-200"
                             >
-                              Clear
+                              Xóa
                             </button>
                           </div>
                         </div>
                       )}
                       
                       <div className="mt-6 text-sm text-slate-600">
-                        <p className="mb-2"><strong>Need help creating a quiz?</strong></p>
-                        <p>Use the "How to Create Quizzes" guide in the main menu for detailed instructions.</p>
+                        <p className="mb-2"><strong>Cần trợ giúp tạo Quiz?</strong></p>
+                        <p>Sử dụng hướng dẫn "Cách tạo Quiz" trong menu chính để xem chỉ dẫn chi tiết.</p>
                       </div>
                     </div>
                   ) : (
                     <div className="space-y-6">
                       <div className="bg-green-50 border border-green-300 rounded-lg p-4">
-                        <h3 className="text-green-700 font-medium mb-2">✅ Quiz Loaded Successfully</h3>
+                        <h3 className="text-green-700 font-medium mb-2">✅ Đã tải Quiz thành công</h3>
                         <p className="text-sm text-green-600">
-                          {uploadedQuiz.questions.length} questions found
+                          Tìm thấy {uploadedQuiz.questions.length} câu hỏi
                         </p>
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-slate-700 mb-2">
-                          Quiz Title
+                          Tiêu đề Quiz
                         </label>
                         <input
                           type="text"
                           value={quizTitle}
                           onChange={(e) => setQuizTitle(e.target.value)}
                           className="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-500 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-colors"
-                          placeholder="Enter quiz title"
+                          placeholder="Nhập tiêu đề Quiz"
                         />
                       </div>
 
                       <div>
                         <label className="block text-sm font-medium text-slate-700 mb-2">
-                          Tags (optional)
+                          Thẻ (không bắt buộc)
                         </label>
                         <input
                           type="text"
                           value={tags}
                           onChange={(e) => setTags(e.target.value)}
                           className="w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-500 focus:border-orange-500 focus:ring-1 focus:ring-orange-500 outline-none transition-colors"
-                          placeholder="science, education, fun (comma separated)"
+                          placeholder="science, education, fun (cách nhau bằng dấu phẩy)"
                         />
                       </div>
 
@@ -493,7 +493,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                           className="w-4 h-4 text-orange-600 bg-white border-slate-300 rounded focus:ring-orange-500"
                         />
                         <label htmlFor="make-public" className="text-sm text-slate-700">
-                          Make this quiz public (others can discover and play it)
+                          Công khai Quiz này (người khác có thể tìm và chơi)
                         </label>
                       </div>
 
@@ -503,7 +503,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                           disabled={uploading || !quizTitle.trim()}
                           className="flex-1 bg-green-500 hover:bg-green-600 disabled:bg-slate-400 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-200 disabled:cursor-not-allowed"
                         >
-                          {uploading ? 'Saving...' : 'Save Quiz'}
+                          {uploading ? 'Đang lưu...' : 'Lưu Quiz'}
                         </button>
                         <button
                           onClick={() => {
@@ -516,7 +516,7 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
                           }}
                           className="px-6 py-3 bg-slate-300 hover:bg-slate-400 text-slate-700 rounded-lg font-semibold transition-all duration-200"
                         >
-                          Cancel
+                          Hủy
                         </button>
                       </div>
                     </div>
@@ -531,22 +531,22 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
         {showDeleteConfirm && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-xl p-6 w-full max-w-md border border-slate-200 shadow-xl">
-              <h3 className="text-xl font-semibold text-slate-800 mb-4">Delete Quiz</h3>
+              <h3 className="text-xl font-semibold text-slate-800 mb-4">Xóa Quiz</h3>
               <p className="text-slate-700 mb-6">
-                Are you sure you want to delete this quiz? This action cannot be undone.
+                Bạn có chắc muốn xóa Quiz này không? Hành động này không thể hoàn tác.
               </p>
               <div className="flex gap-4">
                 <button
                   onClick={() => deleteQuiz(showDeleteConfirm)}
                   className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg font-semibold transition-all duration-200"
                 >
-                  Delete
+                  Xóa
                 </button>
                 <button
                   onClick={() => setShowDeleteConfirm(null)}
                   className="flex-1 bg-slate-300 hover:bg-slate-400 text-slate-700 py-2 px-4 rounded-lg font-semibold transition-all duration-200"
                 >
-                  Cancel
+                  Hủy
                 </button>
               </div>
             </div>
@@ -591,8 +591,8 @@ function QuizCard({
             {quiz.title}
           </h3>
           <div className="flex items-center gap-4 text-sm text-slate-600">
-            <span>📝 {quiz.questions.length} questions</span>
-            <span>🎮 {quiz.timesPlayed} plays</span>
+            <span>📝 {quiz.questions.length} câu hỏi</span>
+            <span>🎮 {quiz.timesPlayed} lượt chơi</span>
           </div>
         </div>
         
@@ -605,7 +605,7 @@ function QuizCard({
                   onEdit();
                 }}
                 className="p-2 text-slate-500 hover:text-orange-500 transition-colors"
-                title="Edit quiz"
+                title="Chỉnh sửa Quiz"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -620,7 +620,7 @@ function QuizCard({
                   onDuplicate();
                 }}
                 className="p-2 text-slate-500 hover:text-green-600 transition-colors"
-                title="Duplicate quiz"
+                title="Nhân bản Quiz"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -635,7 +635,7 @@ function QuizCard({
                   onDelete();
                 }}
                 className="p-2 text-slate-500 hover:text-red-500 transition-colors"
-                title="Delete quiz"
+                title="Xóa Quiz"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -661,10 +661,10 @@ function QuizCard({
 
       <div className="flex items-center justify-between">
         <div className="text-xs text-slate-500">
-          Created {formatDate(quiz.createdAt)}
+          Đã tạo {formatDate(quiz.createdAt)}
           {quiz.isPublic && (
             <span className="ml-2 bg-green-100 text-green-700 px-2 py-1 rounded">
-              Public
+              Công khai
             </span>
           )}
         </div>

@@ -79,7 +79,7 @@ export default function SimpleFlashcard({ quiz, onRestart, onBack }: SimpleFlash
                             style={{ color: '#305F72', borderColor: '#F0B7A4' }}
                         >
                             <ArrowLeft className="w-4 h-4" />
-                            Back to Dashboard
+                            Về Dashboard
                         </button>
                     </div>
                 )}
@@ -88,7 +88,7 @@ export default function SimpleFlashcard({ quiz, onRestart, onBack }: SimpleFlash
                 <div className="text-center mb-8">
                     <h1 className="text-2xl font-bold mb-2" style={{ color: '#305F72' }}>{quiz.title}</h1>
                     <p style={{ color: '#305F72', opacity: 0.8 }}>
-                        Card {currentIndex + 1} of {quiz.questions.length}
+                        Thẻ {currentIndex + 1} / {quiz.questions.length}
                     </p>
                     <div className="mt-4">
                         <div className="rounded-full h-2 w-full" style={{ backgroundColor: '#F0B7A4' }}>
@@ -116,13 +116,13 @@ export default function SimpleFlashcard({ quiz, onRestart, onBack }: SimpleFlash
                                 {currentCard.question}
                             </div>
                             <div className="text-lg mb-4" style={{ color: '#305F72', opacity: 0.7 }}>
-                                Click to reveal answer
+                                Nhấp để xem đáp án
                             </div>
                             <div className="text-sm" style={{ color: '#305F72', opacity: 0.5 }}>
-                                Press Space to flip • Arrow keys to navigate
+                                Nhấn Space để lật • Phím mũi tên để di chuyển
                             </div>
                             <div className="absolute top-4 right-4 text-white px-3 py-1 rounded-full text-xs font-bold" style={{ backgroundColor: '#568EA6' }}>
-                                QUESTION
+                                CÂU HỎI
                             </div>
                         </div>
                     ) : (
@@ -135,10 +135,10 @@ export default function SimpleFlashcard({ quiz, onRestart, onBack }: SimpleFlash
                                 {currentCard.options[currentCard.correct]}
                             </div>
                             <div className="text-sm" style={{ color: '#305F72', opacity: 0.7 }}>
-                                Click to hide answer
+                                Nhấp để ẩn đáp án
                             </div>
                             <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-                                ANSWER
+                                ĐÁP ÁN
                             </div>
                         </div>
                     )}
@@ -156,7 +156,7 @@ export default function SimpleFlashcard({ quiz, onRestart, onBack }: SimpleFlash
                         }}
                     >
                         <ArrowLeft className="w-4 h-4" />
-                        Previous
+                        Trước
                     </button>
 
                     <div className="flex gap-4">
@@ -166,7 +166,7 @@ export default function SimpleFlashcard({ quiz, onRestart, onBack }: SimpleFlash
                             style={{ backgroundColor: '#568EA6' }}
                         >
                             <RotateCcw className="w-4 h-4" />
-                            Restart
+                            Bắt đầu lại
                         </button>
 
                         {onRestart && (
@@ -175,7 +175,7 @@ export default function SimpleFlashcard({ quiz, onRestart, onBack }: SimpleFlash
                                 className="px-4 py-3 text-white rounded-lg transition-all font-medium"
                                 style={{ backgroundColor: '#F18C8E' }}
                             >
-                                New Quiz
+                                Quiz mới
                             </button>
                         )}
                     </div>
@@ -188,7 +188,7 @@ export default function SimpleFlashcard({ quiz, onRestart, onBack }: SimpleFlash
                             backgroundColor: isLastCard ? '#9ca3af' : '#568EA6'
                         }}
                     >
-                        Next
+                        Sau
                         <ArrowRight className="w-4 h-4" />
                     </button>
                 </div>
@@ -196,9 +196,9 @@ export default function SimpleFlashcard({ quiz, onRestart, onBack }: SimpleFlash
                 {/* Keyboard shortcuts help */}
                 <div className="text-center">
                     <div className="inline-flex items-center gap-4 text-xs bg-white/80 px-4 py-2 rounded-lg border" style={{ color: '#305F72', borderColor: '#F0B7A4' }}>
-                        <span><kbd className="px-2 py-1 rounded text-xs font-mono" style={{ backgroundColor: '#F0B7A4', color: '#305F72' }}>Space</kbd> Flip</span>
-                        <span><kbd className="px-2 py-1 rounded text-xs font-mono" style={{ backgroundColor: '#F0B7A4', color: '#305F72' }}>←</kbd> Previous</span>
-                        <span><kbd className="px-2 py-1 rounded text-xs font-mono" style={{ backgroundColor: '#F0B7A4', color: '#305F72' }}>→</kbd> Next</span>
+                        <span><kbd className="px-2 py-1 rounded text-xs font-mono" style={{ backgroundColor: '#F0B7A4', color: '#305F72' }}>Space</kbd> Lật thẻ</span>
+                        <span><kbd className="px-2 py-1 rounded text-xs font-mono" style={{ backgroundColor: '#F0B7A4', color: '#305F72' }}>←</kbd> Trước</span>
+                        <span><kbd className="px-2 py-1 rounded text-xs font-mono" style={{ backgroundColor: '#F0B7A4', color: '#305F72' }}>→</kbd> Sau</span>
                     </div>
                 </div>
             </div>

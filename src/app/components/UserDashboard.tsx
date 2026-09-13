@@ -92,9 +92,9 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
       setQuiz(parsedQuiz);
       setEditorMode('manual');
       setPasteText('');
-      showToastMessage('Quiz imported successfully!');
+      showToastMessage('Đã nhập Quiz thành công!');
     } catch (error) {
-      showToastMessage('Invalid JSON format. Please check your quiz structure.');
+      showToastMessage('Định dạng JSON không hợp lệ. Vui lòng kiểm tra cấu trúc Quiz.');
       console.error('Parse error:', error);
     }
   };
@@ -141,18 +141,18 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
 
   const saveQuiz = async () => {
     if (!user || !quiz.title.trim() || quiz.questions.length === 0) {
-      showToastMessage('Please add a title and at least one question');
+      showToastMessage('Vui lòng thêm tiêu đề và ít nhất một câu hỏi');
       return;
     }
 
     for (let i = 0; i < quiz.questions.length; i++) {
       const q = quiz.questions[i];
       if (!q.question.trim()) {
-        showToastMessage(`Question ${i + 1} is missing question text`);
+        showToastMessage(`Câu hỏi ${i + 1} chưa có nội dung`);
         return;
       }
       if (q.options.some(opt => !opt.trim())) {
-        showToastMessage(`Question ${i + 1} has empty options`);
+        showToastMessage(`Câu hỏi ${i + 1} chưa có lựa chọn`);
         return;
       }
     }
@@ -166,17 +166,17 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
           ...quiz,
           tags: tagsArray
         });
-        showToastMessage('Quiz updated successfully!');
+        showToastMessage('Đã cập nhật Quiz thành công!');
       } else {
         await QuizStorageService.saveQuiz(user, quiz, false, tagsArray);
-        showToastMessage('Quiz saved successfully!');
+        showToastMessage('Đã lưu Quiz thành công!');
       }
 
       resetEditor();
       await loadQuizzes();
       setActiveTab('library');
     } catch (error) {
-      showToastMessage('Failed to save quiz. Please try again.');
+      showToastMessage('Không thể lưu Quiz. Vui lòng thử lại.');
       console.error('Save error:', error);
     } finally {
       setSaving(false);
@@ -199,9 +199,9 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
       await QuizStorageService.deleteQuiz(quizId);
       await loadQuizzes();
       setShowDeleteConfirm(null);
-      showToastMessage('Quiz deleted successfully');
+      showToastMessage('Đã xóa Quiz thành công');
     } catch (error) {
-      showToastMessage('Failed to delete quiz. Please try again.');
+      showToastMessage('Không thể xóa Quiz. Vui lòng thử lại.');
       console.error('Delete quiz error:', error);
     }
   };
@@ -219,10 +219,10 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
 
       onHostGame(gameQuiz);
 
-      showToastMessage(`Starting hosting for "${storedQuiz.title}"`);
+      showToastMessage(`Đang bắt đầu tổ chức "${storedQuiz.title}"`);
     } catch (error) {
       console.error('Error starting real hosting:', error);
-      showToastMessage('Failed to start hosting. Please try again.');
+      showToastMessage('Không thể bắt đầu tổ chức. Vui lòng thử lại.');
     }
   };
 
@@ -237,10 +237,10 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
 
       onSoloSetup(gameQuiz);
 
-      showToastMessage(`Setting up solo study for "${storedQuiz.title}"`);
+      showToastMessage(`Đang thiết lập tự học cho "${storedQuiz.title}"`);
     } catch (error) {
       console.error('Error setting up solo study:', error);
-      showToastMessage('Failed to setup solo study. Please try again.');
+      showToastMessage('Không thể thiết lập tự học. Vui lòng thử lại.');
     }
   };
 
@@ -248,8 +248,8 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
     return (
       <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: '#F0F4F8' }}>
         <div className="text-center bg-white/90 backdrop-blur-sm p-8 rounded-2xl border shadow-xl" style={{ borderColor: '#F0B7A4' }}>
-          <h2 className="text-2xl font-bold mb-4" style={{ color: '#305F72' }}>Please Sign In</h2>
-          <p className="mb-6" style={{ color: '#305F72', opacity: 0.7 }}>You need to sign in to access your dashboard.</p>
+          <h2 className="text-2xl font-bold mb-4" style={{ color: '#305F72' }}>Vui lòng đăng nhập</h2>
+          <p className="mb-6" style={{ color: '#305F72', opacity: 0.7 }}>Bạn cần đăng nhập để truy cập dashboard.</p>
           <button
             onClick={onBack}
             className="text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200"
@@ -270,10 +270,10 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
           <div>
             <h1 className="text-3xl font-bold mb-2 flex items-center gap-3" style={{ color: '#305F72' }}>
               <FaChartLine style={{ color: '#568EA6' }} />
-              My Dashboard
+              Dashboard của tôi
             </h1>
             <p style={{ color: '#305F72', opacity: 0.7 }}>
-              Manage your quizzes, host games, and track your progress
+              Quản lý Quiz, tổ chức trò chơi và theo dõi tiến độ của bạn
             </p>
           </div>
           <button
@@ -294,7 +294,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
           >
             <div className="flex items-center justify-center gap-3 mb-2">
               <FaUsers className="text-2xl" />
-              <span>Host a Game</span>
+              <span>Tổ chức trò chơi</span>
             </div>
             <p className="text-white/80 text-sm">Create a room and invite others to join your quiz</p>
           </button>
@@ -306,7 +306,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
           >
             <div className="flex items-center justify-center gap-3 mb-2">
               <FaUserPlus className="text-2xl" />
-              <span>Join a Game</span>
+              <span>Tham gia trò chơi</span>
             </div>
             <p className="text-white/80 text-sm">Enter a game PIN to join someone else's quiz</p>
           </button>
@@ -321,7 +321,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
             style={activeTab === 'overview' ? { backgroundColor: '#568EA6' } : { color: '#305F72' }}
           >
             <FaChartLine />
-            Overview
+            Tổng quan
           </button>
           <button
             onClick={() => setActiveTab('library')}
@@ -365,7 +365,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                   <FaBook className="text-white" />
                 </div>
                 <div>
-                  <h3 className="font-semibold" style={{ color: '#305F72' }}>Total Quizzes</h3>
+                  <h3 className="font-semibold" style={{ color: '#305F72' }}>Tổng số Quiz</h3>
                   <p className="text-sm" style={{ color: '#305F72', opacity: 0.7 }}>Your creations</p>
                 </div>
               </div>
@@ -404,11 +404,11 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
 
             {/* Recent Activity */}
             <div className="md:col-span-2 lg:col-span-3 bg-white/80 backdrop-blur-sm p-6 rounded-xl border shadow-lg" style={{ borderColor: '#F0B7A4' }}>
-              <h3 className="text-xl font-semibold mb-4" style={{ color: '#305F72' }}>Recent Quizzes</h3>
+              <h3 className="text-xl font-semibold mb-4" style={{ color: '#305F72' }}>Quiz gần đây</h3>
               {quizzes.length === 0 ? (
                 <div className="text-center py-8">
                   <FaBook className="text-4xl mx-auto mb-4" style={{ color: '#F0B7A4' }} />
-                  <p style={{ color: '#305F72', opacity: 0.7 }}>No quizzes yet. Create your first quiz to get started!</p>
+                  <p style={{ color: '#305F72', opacity: 0.7 }}>Chưa có Quiz. Hãy tạo Quiz đầu tiên để bắt đầu!</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -428,16 +428,16 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                           title="Practice solo"
                         >
                           <FaBook className="w-3 h-3" style={{ color: '#305F72' }} />
-                          <span style={{ color: '#305F72' }}>Study</span>
+                          <span style={{ color: '#305F72' }}>Học</span>
                         </button>
                         <button
                           onClick={() => hostRealGame(quiz)}
                           className="text-white px-3 py-1 rounded text-sm font-medium transition-colors flex items-center gap-1"
                           style={{ backgroundColor: '#568EA6' }}
-                          title="Host multiplayer game"
+                          title="Tổ chức trò chơi nhiều người"
                         >
                           <FaUsers className="w-3 h-3" />
-                          Host
+                          Tổ chức
                         </button>
                       </div>
                     </div>
@@ -457,12 +457,12 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
             {loading ? (
               <div className="flex items-center justify-center py-12">
                 <div className="w-8 h-8 border-2 rounded-full animate-spin" style={{ borderColor: '#F0B7A4', borderTopColor: '#568EA6' }}></div>
-                <span className="ml-3" style={{ color: '#305F72', opacity: 0.7 }}>Loading quizzes...</span>
+                <span className="ml-3" style={{ color: '#305F72', opacity: 0.7 }}>Đang tải Quiz...</span>
               </div>
             ) : quizzes.length === 0 ? (
               <div className="text-center py-12">
                 <FaBook className="text-6xl mx-auto mb-4" style={{ color: '#F0B7A4' }} />
-                <h3 className="text-xl font-semibold mb-2" style={{ color: '#305F72' }}>No quizzes yet</h3>
+                <h3 className="text-xl font-semibold mb-2" style={{ color: '#305F72' }}>Chưa có Quiz</h3>
                 <p className="mb-6" style={{ color: '#305F72', opacity: 0.7 }}>Create your first quiz to get started!</p>
                 <button
                   onClick={() => setActiveTab('create')}
@@ -497,7 +497,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                           onClick={() => editQuiz(quiz)}
                           className="p-2 transition-colors"
                           style={{ color: '#305F72', opacity: 0.5 }}
-                          title="Edit quiz"
+                          title="Chỉnh sửa Quiz"
                         >
                           <FaEdit className="w-4 h-4" />
                         </button>
@@ -505,7 +505,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                         <button
                           onClick={() => setShowDeleteConfirm(quiz.id)}
                           className="p-2 text-red-500 hover:text-red-600 transition-colors"
-                          title="Delete quiz"
+                          title="Xóa Quiz"
                         >
                           <FaTrash className="w-4 h-4" />
                         </button>
@@ -529,7 +529,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                     <div className="flex items-center justify-between">
                       <div className="text-xs" style={{ color: '#305F72', opacity: 0.5 }}>
                         <span className="px-2 py-1 rounded" style={{ backgroundColor: '#F0B7A4', color: '#305F72' }}>
-                          Private
+                          Riêng tư
                         </span>
                       </div>
                       <div className="flex gap-2">
@@ -540,16 +540,16 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                           title="Practice solo"
                         >
                           <FaBook className="w-3 h-3" style={{ color: '#305F72' }} />
-                          <span style={{ color: '#305F72' }}>Study</span>
+                          <span style={{ color: '#305F72' }}>Học</span>
                         </button>
                         <button
                           onClick={() => hostRealGame(quiz)}
                           className="text-white px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 flex items-center gap-1"
                           style={{ backgroundColor: '#568EA6' }}
-                          title="Host real multiplayer game"
+                          title="Tổ chức trò chơi nhiều người thực"
                         >
                           <FaUsers className="w-3 h-3" />
-                          Host
+                          Tổ chức
                         </button>
                       </div>
                     </div>
@@ -565,7 +565,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
             <div className="bg-white/80 backdrop-blur-sm p-8 rounded-xl border shadow-lg" style={{ borderColor: '#F0B7A4' }}>
               <h2 className="text-2xl font-semibold mb-6 flex items-center gap-3" style={{ color: '#305F72' }}>
                 {editingQuiz ? <FaEdit /> : <FaPlus />}
-                {editingQuiz ? 'Edit Quiz' : 'Create New Quiz'}
+                {editingQuiz ? 'Chỉnh sửa Quiz' : 'Tạo Quiz mới'}
               </h2>
 
               {/* Editor Mode Toggle */}
@@ -577,7 +577,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                   style={editorMode === 'paste' ? { backgroundColor: '#568EA6' } : { color: '#305F72' }}
                 >
                   <FaUpload />
-                  Paste JSON
+                  Dán JSON
                 </button>
                 <button
                   onClick={() => setEditorMode('manual')}
@@ -586,7 +586,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                   style={editorMode === 'manual' ? { backgroundColor: '#568EA6' } : { color: '#305F72' }}
                 >
                   <FaEdit />
-                  Manual Editor
+                  Trình chỉnh sửa thủ công
                 </button>
               </div>
 
@@ -644,7 +644,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                 <div className="space-y-8">
                   {/* Quiz Settings */}
                   <div className="space-y-6">
-                    <h3 className="text-lg font-medium" style={{ color: '#305F72' }}>Quiz Settings</h3>
+                    <h3 className="text-lg font-medium" style={{ color: '#305F72' }}>Cài đặt Quiz</h3>
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
@@ -687,7 +687,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                   <div className="space-y-6">
                     <div className="flex items-center justify-between">
                       <h3 className="text-lg font-medium" style={{ color: '#305F72' }}>
-                        Questions ({quiz.questions.length})
+                        Câu hỏi ({quiz.questions.length})
                       </h3>
                       <button
                         onClick={addQuestion}
@@ -695,15 +695,15 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                         style={{ backgroundColor: '#F18C8E' }}
                       >
                         <FaPlus className="w-4 h-4" />
-                        Add Question
+                        Thêm câu hỏi
                       </button>
                     </div>
 
                     {quiz.questions.length === 0 ? (
                       <div className="text-center py-12 bg-white rounded-lg border shadow-sm" style={{ borderColor: '#F0B7A4' }}>
                         <div className="text-6xl mb-4">❓</div>
-                        <h4 className="text-xl font-semibold mb-2" style={{ color: '#305F72' }}>No questions yet</h4>
-                        <p className="mb-6" style={{ color: '#305F72', opacity: 0.8 }}>Add your first question to get started</p>
+                        <h4 className="text-xl font-semibold mb-2" style={{ color: '#305F72' }}>Chưa có câu hỏi</h4>
+                        <p className="mb-6" style={{ color: '#305F72', opacity: 0.8 }}>Thêm câu hỏi đầu tiên để bắt đầu</p>
                         <button
                           onClick={addQuestion}
                           className="text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center gap-2 mx-auto"
@@ -718,7 +718,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                         {quiz.questions.map((question, index) => (
                           <div key={index} className="bg-white p-6 rounded-lg border shadow-sm" style={{ borderColor: '#F0B7A4' }}>
                             <div className="flex items-center justify-between mb-4">
-                              <h4 className="text-lg font-semibold" style={{ color: '#305F72' }}>Question {index + 1}</h4>
+                              <h4 className="text-lg font-semibold" style={{ color: '#305F72' }}>Câu hỏi {index + 1}</h4>
                               <button
                                 onClick={() => deleteQuestion(index)}
                                 className="p-2 text-red-500 hover:text-red-600 transition-colors"
@@ -732,7 +732,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                               {/* Question Text */}
                               <div>
                                 <label className="block text-sm font-medium mb-2" style={{ color: '#305F72' }}>
-                                  Question Text *
+                                  Nội dung câu hỏi *
                                 </label>
                                 <textarea
                                   value={question.question}
@@ -750,7 +750,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                               {/* Options */}
                               <div>
                                 <label className="block text-sm font-medium mb-2" style={{ color: '#305F72' }}>
-                                  Answer Options *
+                                  Các lựa chọn trả lời *
                                 </label>
                                 <div className="grid md:grid-cols-2 gap-3">
                                   {question.options.map((option, optionIndex) => (
@@ -789,7 +789,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                               {/* Time Limit */}
                               <div>
                                 <label className="block text-sm font-medium mb-2" style={{ color: '#305F72' }}>
-                                  Time Limit (seconds)
+                                  Giới hạn thời gian (giây)
                                 </label>
                                 <input
                                   type="number"
@@ -815,7 +815,7 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                   {quiz.questions.length > 0 && (
                     <div className="flex items-center justify-between pt-6 border-t" style={{ borderColor: '#F0B7A4' }}>
                       <div>
-                        <h4 className="text-lg font-semibold mb-1" style={{ color: '#305F72' }}>Ready to save?</h4>
+                        <h4 className="text-lg font-semibold mb-1" style={{ color: '#305F72' }}>Sẵn sàng lưu?</h4>
                         <p className="text-sm" style={{ color: '#305F72', opacity: 0.7 }}>
                           {quiz.questions.length} question{quiz.questions.length !== 1 ? 's' : ''} •
                           Private •
@@ -842,12 +842,12 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                           {saving ? (
                             <>
                               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                              Saving...
+                              Đang lưu...
                             </>
                           ) : (
                             <>
                               <FaSave className="w-4 h-4" />
-                              {editingQuiz ? 'Update Quiz' : 'Save Quiz'}
+                              {editingQuiz ? 'Cập nhật Quiz' : 'Lưu Quiz'}
                             </>
                           )}
                         </button>
@@ -866,10 +866,10 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
             <div className="bg-white rounded-xl p-6 w-full max-w-md border shadow-xl" style={{ borderColor: '#F0B7A4' }}>
               <h3 className="text-xl font-semibold mb-4 flex items-center gap-2" style={{ color: '#305F72' }}>
                 <FaTrash className="text-red-500" />
-                Delete Quiz
+                Xóa Quiz
               </h3>
               <p className="mb-6" style={{ color: '#305F72', opacity: 0.7 }}>
-                Are you sure you want to delete this quiz? This action cannot be undone.
+                Bạn có chắc muốn xóa Quiz này không? Hành động này không thể hoàn tác.
               </p>
               <div className="flex gap-4">
                 <button

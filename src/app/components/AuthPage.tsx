@@ -24,20 +24,20 @@ export function AuthPage({ onClose }: { onClose: () => void }) {
     try {
       if (isSignUp) {
         if (password !== confirmPassword) {
-          throw new Error('Passwords do not match');
+          throw new Error('Mật khẩu không khớp');
         }
         if (password.length < 6) {
-          throw new Error('Password must be at least 6 characters');
+          throw new Error('Mật khẩu phải có ít nhất 6 ký tự');
         }
         await signUp(email, password);
-        setSuccess('Account created! Please check your email for verification.');
+        setSuccess('Đã tạo tài khoản! Vui lòng kiểm tra email để xác minh.');
       } else {
         await signIn(email, password);
-        setSuccess('Signed in successfully!');
+        setSuccess('Đăng nhập thành công!');
         setTimeout(() => onClose(), 1500);
       }
     } catch (err: any) {
-      setError(err.message || 'An error occurred');
+      setError(err.message || 'Đã xảy ra lỗi');
     } finally {
       setIsLoading(false);
     }
@@ -56,7 +56,7 @@ export function AuthPage({ onClose }: { onClose: () => void }) {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold text-[#305F72]">
-          {isSignUp ? 'Create Account' : 'Welcome Back'}
+          {isSignUp ? 'Tạo tài khoản' : 'Chào mừng trở lại'}
         </h2>
         <button
           onClick={onClose}
@@ -69,28 +69,28 @@ export function AuthPage({ onClose }: { onClose: () => void }) {
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block text-sm font-medium text-[#305F72] mb-2">
-            Email Address
+            Địa chỉ email
           </label>
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full bg-white/80 border border-[#F0B7A4]/50 rounded-lg px-4 py-3 text-[#305F72] placeholder-[#305F72]/50 focus:border-[#568EA6] focus:ring-2 focus:ring-[#568EA6]/50 outline-none transition-all backdrop-blur-sm shadow-sm"
-            placeholder="Enter your email"
+            placeholder="Nhập email của bạn"
             required
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-[#305F72] mb-2">
-            Password
+            Mật khẩu
           </label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full bg-white/80 border border-[#F0B7A4]/50 rounded-lg px-4 py-3 text-[#305F72] placeholder-[#305F72]/50 focus:border-[#568EA6] focus:ring-2 focus:ring-[#568EA6]/50 outline-none transition-all backdrop-blur-sm shadow-sm"
-            placeholder="Enter your password"
+            placeholder="Nhập mật khẩu của bạn"
             required
             minLength={6}
           />
@@ -99,14 +99,14 @@ export function AuthPage({ onClose }: { onClose: () => void }) {
         {isSignUp && (
           <div>
             <label className="block text-sm font-medium text-[#305F72] mb-2">
-              Confirm Password
+              Xác nhận mật khẩu
             </label>
             <input
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="w-full bg-white/80 border border-[#F0B7A4]/50 rounded-lg px-4 py-3 text-[#305F72] placeholder-[#305F72]/50 focus:border-[#568EA6] focus:ring-2 focus:ring-[#568EA6]/50 outline-none transition-all backdrop-blur-sm shadow-sm"
-              placeholder="Confirm your password"
+              placeholder="Nhập lại mật khẩu"
               required
               minLength={6}
             />
@@ -135,17 +135,17 @@ export function AuthPage({ onClose }: { onClose: () => void }) {
           {isLoading ? (
             <>
               <FiLoader className="w-5 h-5 animate-spin" />
-              {isSignUp ? 'Creating Account...' : 'Signing In...'}
+              {isSignUp ? 'Đang tạo tài khoản...' : 'Đang đăng nhập...'}
             </>
           ) : (
-            isSignUp ? 'Create Account' : 'Sign In'
+            isSignUp ? 'Tạo tài khoản' : 'Đăng nhập'
           )}
         </button>
       </form>
 
       {!isSignUp && (
         <div className="mt-4 p-4 bg-[#F0B7A4]/30 border border-[#F0B7A4]/50 rounded-lg">
-          <p className="text-[#305F72] text-sm font-medium mb-2">Demo Account:</p>
+          <p className="text-[#305F72] text-sm font-medium mb-2">Tài khoản Demo:</p>
           <p className="text-[#305F72]/80 text-xs">
             Email: demo@example.com<br />
             Password: password

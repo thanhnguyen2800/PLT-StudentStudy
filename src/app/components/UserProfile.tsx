@@ -28,7 +28,7 @@ export function UserProfile({ user, onSignOut, onViewDashboard }: UserProfilePro
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-3 bg-[#F0B7A4]/80 hover:bg-[#F0B7A4] backdrop-blur-sm text-[#305F72] px-4 py-2 rounded-lg transition-all duration-200 border border-[#305F72]/20 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#305F72] focus:ring-offset-2"
-        aria-label="User menu"
+        aria-label="Menu người dùng"
       >
         <div className="w-8 h-8 bg-[#568EA6] rounded-full flex items-center justify-center text-sm font-bold text-white shadow-sm">
           {user.email?.charAt(0).toUpperCase()}
@@ -62,12 +62,12 @@ export function UserProfile({ user, onSignOut, onViewDashboard }: UserProfilePro
                     {user.emailVerified ? (
                       <span className="text-[#568EA6] flex items-center gap-1.5 font-medium">
                         <FiCheckCircle className="w-3.5 h-3.5" />
-                        Verified Account
+                        Tài khoản đã xác minh
                       </span>
                     ) : (
                       <span className="text-[#F18C8E] flex items-center gap-1.5 font-medium">
                         <FiAlertTriangle className="w-3.5 h-3.5" />
-                        Needs Verification
+                        Cần xác minh
                       </span>
                     )}
                   </p>
@@ -83,7 +83,7 @@ export function UserProfile({ user, onSignOut, onViewDashboard }: UserProfilePro
                 <div className="w-8 h-8 bg-[#568EA6]/20 rounded-lg flex items-center justify-center">
                   <FiGrid className="w-4 h-4 text-[#568EA6]" />
                 </div>
-                <span>My Dashboard</span>
+                <span>Dashboard của tôi</span>
               </button>
 
               <button
@@ -93,7 +93,7 @@ export function UserProfile({ user, onSignOut, onViewDashboard }: UserProfilePro
                 <div className="w-8 h-8 bg-[#F18C8E]/30 rounded-lg flex items-center justify-center">
                   <FiLogOut className="w-4 h-4 text-[#F18C8E]" />
                 </div>
-                <span>Sign Out</span>
+                <span>Đăng xuất</span>
               </button>
             </div>
           </div>

@@ -118,7 +118,7 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
       <div className="min-h-screen bg-[#F0F4F8] text-[#305F72] flex items-center justify-center p-4">
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 text-center border border-[#F0B7A4]/50">
           <FiLoader className="w-8 h-8 text-[#568EA6] animate-spin mx-auto mb-4" />
-          <div className="text-xl font-semibold text-[#305F72]">Loading...</div>
+          <div className="text-xl font-semibold text-[#305F72]">Đang tải...</div>
           <div className="mt-2 text-sm text-[#305F72]/70 font-medium">
             Connecting to game {gamePin}...
           </div>
@@ -131,7 +131,7 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
     return (
       <div className="min-h-screen bg-[#F0F4F8] text-[#305F72] flex items-center justify-center p-4">
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 text-center border border-[#F0B7A4]/50">
-          <div className="text-[#F18C8E] text-xl mb-4 font-semibold">❌ Connection Error</div>
+          <div className="text-[#F18C8E] text-xl mb-4 font-semibold">❌ Lỗi kết nối</div>
           <div className="text-[#305F72]/70 mb-4 font-medium">{error}</div>
           <div className="text-sm text-[#305F72]/50 font-medium">
             Please check your internet connection and try again.
@@ -145,7 +145,7 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
     return (
       <div className="min-h-screen bg-[#F0F4F8] text-[#305F72] flex items-center justify-center p-4">
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 text-center border border-[#F0B7A4]/50">
-          <div className="text-[#F18C8E] text-xl mb-4 font-semibold">❌ Game Not Found</div>
+          <div className="text-[#F18C8E] text-xl mb-4 font-semibold">❌ Không tìm thấy phòng chơi</div>
           <div className="text-[#305F72]/70 font-medium">
             Game with PIN {gamePin} does not exist or has been removed.
           </div>
@@ -162,7 +162,7 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
       <div className="min-h-screen bg-[#F0F4F8] text-[#305F72] flex items-center justify-center p-4">
         <div className="w-full max-w-md">
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 border border-[#F0B7A4]/50 text-center">
-            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-[#305F72]">Welcome, {playerName}!</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-[#305F72]">Chào mừng, {playerName}!</h1>
 
             <div className="bg-[#568EA6]/10 backdrop-blur-sm p-6 rounded-xl mb-6 border border-[#568EA6]/30 shadow-sm">
               <FiHash className="w-8 h-8 mx-auto mb-3 text-[#568EA6]" />
@@ -175,7 +175,7 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
             </div>
 
             <div className="mb-6">
-              <h4 className="font-semibold mb-3 text-[#305F72]">Players in lobby:</h4>
+              <h4 className="font-semibold mb-3 text-[#305F72]">Người chơi trong phòng:</h4>
               <div className="flex flex-wrap gap-2 justify-center">
                 {Object.values(game.players).map((player, index) => (
                   <span
@@ -191,12 +191,12 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
               </div>
             </div>
 
-            <p className="text-[#305F72]/70 mb-6 font-medium">Waiting for the host to start the game...</p>
+            <p className="text-[#305F72]/70 mb-6 font-medium">Đang chờ người tổ chức bắt đầu trò chơi...</p>
 
             {/* Live status indicator */}
             <div className="flex items-center justify-center gap-2 text-sm text-[#568EA6] bg-[#568EA6]/10 backdrop-blur-sm p-3 rounded-xl border border-[#568EA6]/30 shadow-sm">
               <FiWifi className="w-4 h-4 text-[#568EA6]" />
-              <span className="font-medium">Connected • Waiting for host</span>
+              <span className="font-medium">Đã kết nối • Đang chờ người tổ chức</span>
             </div>
           </div>
         </div>
@@ -212,7 +212,7 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
             <div className="text-center mb-6">
               <div className="bg-[#568EA6]/10 backdrop-blur-sm p-4 rounded-xl mb-4 border border-[#568EA6]/30 shadow-sm">
                 <span className="font-semibold text-[#568EA6] text-lg">
-                  Question {currentQuestion + 1} of {game.quiz.questions.length}
+                  Câu hỏi {currentQuestion + 1} / {game.quiz.questions.length}
                 </span>
               </div>
               <h2 className="text-xl sm:text-2xl font-bold text-[#305F72] mb-4 leading-tight">{question.question}</h2>
@@ -246,18 +246,18 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
             ) : (
               <div className="text-center">
                 <div className="bg-[#7FB069]/20 backdrop-blur-sm p-6 rounded-xl mb-6 border border-[#7FB069]/50 shadow-sm">
-                  <span className="text-[#7FB069] font-semibold text-lg">✅ Answer Submitted!</span>
+                  <span className="text-[#7FB069] font-semibold text-lg">✅ Đã gửi câu trả lời!</span>
                 </div>
                 <div className="text-[#305F72] mb-6 bg-[#F0B7A4]/20 backdrop-blur-sm p-4 rounded-xl border border-[#F0B7A4]/50 shadow-sm">
-                  You chose: <span className="font-semibold text-[#305F72]">{question.options[selectedAnswer!]}</span>
+                  Bạn đã chọn: <span className="font-semibold text-[#305F72]">{question.options[selectedAnswer!]}</span>
                 </div>
                 <div className="bg-[#568EA6]/10 backdrop-blur-sm p-6 rounded-xl mb-6 border border-[#568EA6]/30 shadow-sm">
-                  <div className="text-[#568EA6] text-sm mb-1 font-medium">Your Current Score</div>
+                  <div className="text-[#568EA6] text-sm mb-1 font-medium">Điểm hiện tại</div>
                   <div className="text-3xl font-bold text-[#568EA6]">{playerData?.score || 0}</div>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-sm text-[#568EA6] bg-[#568EA6]/10 backdrop-blur-sm p-3 rounded-xl border border-[#568EA6]/30 shadow-sm">
                   <div className="w-2 h-2 bg-[#568EA6] rounded-full animate-pulse"></div>
-                  <span className="font-medium">Waiting for other players...</span>
+                  <span className="font-medium">Đang chờ người chơi khác...</span>
                 </div>
               </div>
             )}
@@ -280,7 +280,7 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 border border-[#F0B7A4]/50 text-center">
             <div className={`p-6 rounded-xl mb-6 border backdrop-blur-sm shadow-sm ${isCorrect ? 'bg-[#7FB069]/20 border-[#7FB069]/50' : 'bg-[#F18C8E]/20 border-[#F18C8E]/50'}`}>
               <div className={`text-2xl font-bold ${isCorrect ? 'text-[#7FB069]' : 'text-[#F18C8E]'}`}>
-                {isCorrect ? '🎉 Correct!' : '❌ Wrong'}
+                {isCorrect ? '🎉 Chính xác!' : '❌ Sai'}
               </div>
               {!isCorrect && selectedAnswer !== null && (
                 <div className="text-sm text-[#305F72]/70 mt-3 font-medium">
@@ -290,7 +290,7 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
             </div>
 
             <div className="mb-6">
-              <div className="text-[#305F72]/70 mb-3 font-medium">Correct Answer:</div>
+              <div className="text-[#305F72]/70 mb-3 font-medium">Đáp án đúng:</div>
               <div className="font-semibold text-lg p-4 bg-[#7FB069]/20 backdrop-blur-sm rounded-xl text-[#7FB069] border border-[#7FB069]/50 shadow-sm">
                 {question.options[question.correct]}
               </div>
@@ -298,18 +298,18 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
 
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-[#568EA6]/10 backdrop-blur-sm p-4 rounded-xl border border-[#568EA6]/30 shadow-sm">
-                <div className="text-[#568EA6] mb-1 text-sm font-medium">Your Score</div>
+                <div className="text-[#568EA6] mb-1 text-sm font-medium">Điểm của bạn</div>
                 <div className="text-2xl font-bold text-[#568EA6]">{playerData?.score || 0}</div>
               </div>
               <div className="bg-[#F0B7A4]/20 backdrop-blur-sm p-4 rounded-xl border border-[#F0B7A4]/50 shadow-sm">
-                <div className="text-[#305F72] mb-1 text-sm font-medium">Your Rank</div>
+                <div className="text-[#305F72] mb-1 text-sm font-medium">Xếp hạng</div>
                 <div className="text-2xl font-bold text-[#305F72]">#{myRank}</div>
               </div>
             </div>
 
             <div className="flex items-center justify-center gap-2 text-sm text-[#568EA6] bg-[#568EA6]/10 backdrop-blur-sm p-3 rounded-xl border border-[#568EA6]/30 shadow-sm">
               <div className="w-2 h-2 bg-[#568EA6] rounded-full animate-pulse"></div>
-              <span className="font-medium">Waiting for next question...</span>
+              <span className="font-medium">Đang chờ câu hỏi tiếp theo...</span>
             </div>
           </div>
         </div>
@@ -329,10 +329,10 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
         <div className="w-full max-w-md">
           <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 border border-[#F0B7A4]/50 text-center">
             <FiAward className="w-16 h-16 mx-auto mb-4 text-[#568EA6]" />
-            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-[#305F72]">Game Over!</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-[#305F72]">Trò chơi kết thúc!</h1>
 
             <div className="bg-[#568EA6]/10 backdrop-blur-sm p-6 rounded-xl mb-6 border border-[#568EA6]/30 shadow-sm">
-              <div className="text-lg mb-2 text-[#305F72] font-medium">Your Final Rank</div>
+              <div className="text-lg mb-2 text-[#305F72] font-medium">Xếp hạng cuối cùng</div>
               <div className="text-4xl font-bold text-[#305F72] mb-2">
                 {playerRank === 1 ? '🥇' : playerRank === 2 ? '🥈' : playerRank === 3 ? '🥉' : `#${playerRank}`}
               </div>
@@ -340,15 +340,15 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
                 {playerData?.score || 0} points
               </div>
               <div className="text-sm text-[#568EA6] font-medium">
-                {playerRank === 1 && '🎉 Champion!'}
-                {playerRank === 2 && '🎊 Runner-up!'}
-                {playerRank === 3 && '🏆 Third place!'}
-                {playerRank > 3 && 'Great job!'}
+                {playerRank === 1 && '🎉 Quán quân!'}
+                {playerRank === 2 && '🎊 Á quân!'}
+                {playerRank === 3 && '🏆 Hạng ba!'}
+                {playerRank > 3 && 'Làm tốt lắm!'}
               </div>
             </div>
 
             <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-4 text-[#305F72]">Final Leaderboard</h3>
+              <h3 className="text-lg font-semibold mb-4 text-[#305F72]">Bảng xếp hạng cuối cùng</h3>
               <div className="space-y-3">
                 {leaderboard.slice(0, 5).map((entry, index) => (
                   <div
@@ -381,7 +381,7 @@ export default function PlayerGame({ gamePin, playerId, playerName }: PlayerGame
             </div>
 
             <div className="text-[#305F72]/70 bg-[#F0B7A4]/10 backdrop-blur-sm p-4 rounded-xl border border-[#F0B7A4]/30 shadow-sm font-medium">
-              Thanks for playing, {playerName}!
+              Cảm ơn bạn đã chơi, {playerName}!
             </div>
           </div>
         </div>

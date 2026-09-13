@@ -39,7 +39,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
         try {
           const result = e.target?.result;
           if (typeof result !== 'string') {
-            throw new Error('Failed to read file content');
+            throw new Error('Không thể đọc nội dung tệp');
           }
 
           const jsonData = JSON.parse(result);
@@ -54,26 +54,26 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
         } catch (error) {
           console.error('❌ JSON parsing/validation error:', error);
           const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-          setError(`Invalid JSON file: ${errorMessage}`);
+          setError(`Tệp JSON không hợp lệ: ${errorMessage}`);
           setQuiz(null);
         }
       };
 
       reader.onerror = () => {
         console.error('❌ File reading error');
-        setError('Error reading file. Please try again.');
+        setError('Lỗi khi đọc tệp. Vui lòng thử lại.');
       };
 
       reader.readAsText(file);
     } else {
       console.warn('⚠️ Invalid file type selected:', file?.type);
-      setError('Please select a valid JSON file');
+      setError('Vui lòng chọn tệp JSON hợp lệ');
     }
   };
 
   const handleJsonPaste = () => {
     if (!jsonText.trim()) {
-      setError('Please paste some JSON content');
+      setError('Vui lòng dán nội dung JSON');
       return;
     }
 
@@ -89,7 +89,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
     } catch (error) {
       console.error('❌ JSON parsing/validation error:', error);
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      setError(`Invalid JSON: ${errorMessage}`);
+      setError(`JSON không hợp lệ: ${errorMessage}`);
       setQuiz(null);
     }
   };
@@ -134,29 +134,29 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                   style={{ color: '#305F72', borderColor: '#F0B7A4' }}
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Back to Dashboard
+                  Về Dashboard
                 </button>
               )}
               <div>
                 <h1 className="text-3xl font-bold flex items-center gap-3" style={{ color: '#305F72' }}>
                   <BookOpen style={{ color: '#568EA6' }} />
-                  Solo Study Mode
+                  Chế độ tự học
                 </h1>
-                <p style={{ color: '#305F72', opacity: 0.8 }}>Practice with your own quizzes at your own pace</p>
+                <p style={{ color: '#305F72', opacity: 0.8 }}>Luyện tập với Quiz của bạn theo tốc độ riêng</p>
               </div>
             </div>
           </div>
 
           {error && (
             <div className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded-lg mb-6">
-              <strong>Error:</strong> {error}
+              <strong>Lỗi:</strong> {error}
             </div>
           )}
 
           {/* Show preloaded quiz notification */}
           {preloadedQuiz && quiz && (
             <div className="bg-green-50 border border-green-300 text-green-700 px-4 py-3 rounded-lg mb-6">
-              <strong>Quiz Loaded:</strong> "{quiz.title}" is ready for study!
+              <strong>Đã tải Quiz:</strong> "{quiz.title}" đã sẵn sàng để học!
             </div>
           )}
 
@@ -173,7 +173,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                     style={activeTab === 'upload' ? { backgroundColor: '#568EA6' } : { color: '#305F72' }}
                   >
                     <Upload className="w-4 h-4" />
-                    Upload File
+                    Tải tệp
                   </button>
                   <button
                     onClick={() => setActiveTab('paste')}
@@ -182,7 +182,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                     style={activeTab === 'paste' ? { backgroundColor: '#568EA6' } : { color: '#305F72' }}
                   >
                     <FileText className="w-4 h-4" />
-                    Paste JSON
+                    Dán JSON
                   </button>
                 </div>
 
@@ -201,9 +201,9 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                     >
                       <Upload className="w-12 h-12 mx-auto mb-4 group-hover:opacity-80 transition-colors" style={{ color: '#568EA6' }} />
                       <span className="font-medium text-lg block mb-2" style={{ color: '#568EA6' }}>
-                        Upload Quiz JSON File
+                        Tải tệp Quiz JSON
                       </span>
-                      <span className="text-sm" style={{ color: '#305F72', opacity: 0.8 }}>Click to browse or drag and drop</span>
+                      <span className="text-sm" style={{ color: '#305F72', opacity: 0.8 }}>Nhấp để chọn hoặc kéo thả tệp</span>
                     </button>
                     <input
                       ref={fileInputRef}
@@ -222,7 +222,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                       <textarea
                         value={jsonText}
                         onChange={(e) => setJsonText(e.target.value)}
-                        placeholder="Paste your quiz JSON here..."
+                        placeholder="Dán JSON của Quiz vào đây..."
                         className="w-full h-48 bg-white border rounded-lg p-4 font-mono text-sm resize-none outline-none transition-colors focus:border-blue-500"
                         style={{
                           color: '#305F72',
@@ -237,7 +237,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                             backgroundColor: '#F0B7A4',
                             color: '#305F72'
                           }}
-                          title="Clear JSON"
+                          title="Xóa JSON"
                         >
                           <RefreshCw className="w-4 h-4" />
                         </button>
@@ -251,7 +251,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                         style={{ backgroundColor: !jsonText.trim() ? '#9ca3af' : '#568EA6' }}
                       >
                         <Copy className="w-4 h-4" />
-                        Parse JSON
+                        Phân tích JSON
                       </button>
                       <button
                         onClick={clearJson}
@@ -261,7 +261,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                           backgroundColor: !jsonText ? '#e5e7eb' : '#F0B7A4',
                           color: '#305F72'
                         }}
-                        title="Clear"
+                        title="Xóa"
                       >
                         <RefreshCw className="w-4 h-4" />
                       </button>
@@ -276,13 +276,13 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                     className="w-full text-white py-3 px-6 rounded-lg transition-all duration-200 font-semibold"
                     style={{ backgroundColor: '#F18C8E' }}
                   >
-                    📝 Load Sample Quiz
+                    📝 Tải Quiz mẫu
                   </button>
                 </div>
 
                 {/* JSON format help */}
                 <div className="bg-white p-4 rounded-lg border" style={{ borderColor: '#F0B7A4' }}>
-                  <h3 className="font-semibold mb-2" style={{ color: '#305F72' }}>Expected JSON Format:</h3>
+                  <h3 className="font-semibold mb-2" style={{ color: '#305F72' }}>Định dạng JSON yêu cầu:</h3>
                   <pre className="text-xs bg-white p-3 rounded overflow-x-auto border" style={{ color: '#305F72', borderColor: '#F0B7A4' }}>
                     {JSON.stringify({
                       title: "Quiz Title",
@@ -306,18 +306,18 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                     <h3 className="font-semibold text-xl mb-3" style={{ color: '#305F72' }}>{quiz.title}</h3>
                     <div className="flex items-center gap-4 mb-4">
                       <span className="text-white px-3 py-1 rounded-full text-sm font-medium" style={{ backgroundColor: '#568EA6' }}>
-                        {quiz.questions?.length} questions
+                        {quiz.questions?.length} câu hỏi
                       </span>
                       <span className="text-sm flex items-center gap-2" style={{ color: '#305F72', opacity: 0.8 }}>
                         {isFlashcardMode ? (
                           <>
                             <BookOpen className="w-4 h-4" />
-                            Flashcard Mode
+                            Chế độ Flashcard
                           </>
                         ) : (
                           <>
                             <Brain className="w-4 h-4" />
-                            Quiz Mode
+                            Chế độ Quiz
                           </>
                         )}
                       </span>
@@ -325,7 +325,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
 
                     <div className="space-y-3">
                       <h4 className="font-medium" style={{ color: '#305F72' }}>
-                        {isFlashcardMode ? 'Flashcard Preview:' : 'Question Preview:'}
+                        {isFlashcardMode ? 'Xem trước Flashcard:' : 'Xem trước câu hỏi:'}
                       </h4>
                       {quiz.questions?.slice(0, 3).map((q, i) => (
                         <div key={i} className="bg-white p-4 rounded-lg border-l-4 border" style={{ borderLeftColor: '#568EA6', borderColor: '#F0B7A4' }}>
@@ -334,8 +334,8 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
                           </div>
                           <div className="text-xs" style={{ color: '#305F72', opacity: 0.8 }}>
                             {isFlashcardMode
-                              ? `Answer: ${q.options[q.correct]}`
-                              : `${q.options.length} options • ${q.time}s timer`
+                              ? `Đáp án: ${q.options[q.correct]}`
+                              : `${q.options.length} lựa chọn • ${q.time}s tính giờ`
                             }
                           </div>
                         </div>
@@ -343,7 +343,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
 
                       {quiz.questions && quiz.questions.length > 3 && (
                         <div className="text-xs text-center" style={{ color: '#305F72', opacity: 0.6 }}>
-                          ... and {quiz.questions.length - 3} more {isFlashcardMode ? 'flashcards' : 'questions'}
+                          ... và {quiz.questions.length - 3} {isFlashcardMode ? 'flashcard' : 'câu hỏi'} nữa
                         </div>
                       )}
                     </div>
@@ -351,7 +351,7 @@ export default function SoloSetup({ onStartSolo, preloadedQuiz, onBack }: SoloSe
 
                   {/* Mode Selection Toggle */}
                   <div className="bg-white/80 backdrop-blur-sm p-6 rounded-xl border shadow-lg" style={{ borderColor: '#F0B7A4' }}>
-                    <h3 className="font-semibold text-center mb-4" style={{ color: '#305F72' }}>Choose Your Study Mode</h3>
+                    <h3 className="font-semibold text-center mb-4" style={{ color: '#305F72' }}>Chọn chế độ học</h3>
                     <div className="flex space-x-1 bg-white p-1 rounded-lg mb-4 border" style={{ borderColor: '#F0B7A4' }}>
                       <button
                         onClick={() => setIsFlashcardMode(false)}

@@ -20,14 +20,14 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
   const joinGame = async () => {
     if (!gamePin || !playerName) {
       console.warn('⚠️ Attempted to join without PIN or name');
-      setError('Please enter both game PIN and your name');
+      setError('Vui lòng nhập mã PIN phòng chơi và tên của bạn');
       return;
     }
 
     // Final validation - ensure PIN is exactly 6 digits
     if (gamePin.length !== 6 || !/^\d{6}$/.test(gamePin)) {
       console.warn('⚠️ Invalid PIN format');
-      setError('Game PIN must be exactly 6 digits');
+      setError('Mã PIN phòng chơi phải gồm đúng 6 chữ số');
       return;
     }
 
@@ -43,7 +43,7 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
 
       if (!snapshot.exists()) {
         console.error('❌ Game not found');
-        throw new Error('Game not found. Please check the PIN.');
+        throw new Error('Không tìm thấy phòng chơi. Vui lòng kiểm tra mã PIN.');
       }
 
       const gameData = snapshot.val() as Game;
@@ -51,14 +51,14 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
 
       if (gameData.status !== 'waiting') {
         console.warn('⚠️ Game has already started');
-        throw new Error('Game has already started. Cannot join now.');
+        throw new Error('Trò chơi đã bắt đầu. Không thể tham gia lúc này.');
       }
 
       // Check if player name already exists
       const existingNames = Object.values(gameData.players || {}).map(p => p.name.toLowerCase());
       if (existingNames.includes(playerName.toLowerCase())) {
         console.warn('⚠️ Player name already taken');
-        throw new Error('This name is already taken. Please choose a different name.');
+        throw new Error('Tên này đã được sử dụng. Vui lòng chọn tên khác.');
       }
 
       const playerId = generatePlayerId();
@@ -81,7 +81,7 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
       onJoinGame(gamePin, playerId, playerName);
     } catch (error) {
       console.error('❌ Error joining game:', error);
-      setError(error instanceof Error ? error.message : 'Could not join game. Please check the game PIN.');
+      setError(error instanceof Error ? error.message : 'Không thể tham gia phòng chơi. Vui lòng kiểm tra mã PIN.');
     }
     setJoining(false);
   };
@@ -156,7 +156,7 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
       <div className="w-full max-w-md">
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-6 sm:p-8 border border-[#F0B7A4]/50">
           <h1 className="text-3xl font-bold text-center mb-8 text-[#305F72]">
-            Join Game
+            Tham gia phòng chơi
           </h1>
 
           {error && (
@@ -169,7 +169,7 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
           <div className="space-y-6">
             <div>
               <label className="block text-sm font-semibold text-[#305F72] mb-2">
-                Game PIN
+                Mã PIN phòng chơi
               </label>
               <input
                 type="text"
@@ -179,7 +179,7 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
                 onChange={(e) => handlePinChange(e.target.value)}
                 onKeyDown={handlePinKeyDown}
                 onKeyPress={handleKeyPress}
-                placeholder="Enter 6-digit PIN"
+                placeholder="Nhập mã PIN 6 chữ số"
                 className={`w-full p-4 bg-white/90 backdrop-blur-sm border rounded-xl text-center text-2xl font-mono text-[#305F72] placeholder-[#305F72]/50 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200 shadow-sm ${gamePin.length === 0 ? 'border-[#F0B7A4]/50 focus:ring-[#568EA6]' :
                     isValidPin ? 'border-[#7FB069]/50 focus:ring-[#7FB069] bg-[#7FB069]/10' :
                       'border-[#F18C8E]/50 focus:ring-[#F18C8E] bg-[#F18C8E]/10'
@@ -193,15 +193,15 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
                   isValidPin ? 'text-[#7FB069]' :
                     'text-[#F18C8E]'
                 }`}>
-                {gamePin.length === 0 ? 'PIN should be 6 digits (e.g., 123456)' :
-                  isValidPin ? '✓ Valid PIN format' :
-                    `${gamePin.length}/6 digits - PIN must be exactly 6 digits`}
+                {gamePin.length === 0 ? 'PIN gồm 6 chữ số (ví dụ: 123456)' :
+                  isValidPin ? '✓ PIN hợp lệ' :
+                    `${gamePin.length}/6 chữ số - PIN phải gồm đúng 6 chữ số`}
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-semibold text-[#305F72] mb-2">
-                Your Name
+                Tên của bạn
               </label>
               <input
                 type="text"
@@ -209,7 +209,7 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
                 onChange={(e) => handleNameChange(e.target.value)}
                 onKeyDown={handleNameKeyDown}
                 onKeyPress={handleKeyPress}
-                placeholder="Enter your name"
+                placeholder="Nhập tên của bạn"
                 className={`w-full p-4 bg-white/90 backdrop-blur-sm border rounded-xl text-[#305F72] placeholder-[#305F72]/50 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-200 shadow-sm ${playerName.length === 0 ? 'border-[#F0B7A4]/50 focus:ring-[#568EA6]' :
                     isValidName ? 'border-[#7FB069]/50 focus:ring-[#7FB069] bg-[#7FB069]/10' :
                       'border-[#F18C8E]/50 focus:ring-[#F18C8E] bg-[#F18C8E]/10'
@@ -221,7 +221,7 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
                   isValidName ? 'text-[#7FB069]' :
                     'text-[#F18C8E]'
                 }`}>
-                {isValidName ? `✓ ${playerName.trim().length}/20 characters` : 'Maximum 20 characters, no leading spaces'}
+                {isValidName ? `✓ ${playerName.trim().length}/20 ký tự` : 'Tối đa 20 ký tự, không bắt đầu bằng khoảng trắng'}
               </div>
             </div>
 
@@ -239,10 +239,10 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
               {joining ? (
                 <div className="flex items-center justify-center gap-2">
                   <FiLoader className="w-5 h-5 animate-spin" />
-                  Joining...
+                  Đang tham gia...
                 </div>
               ) : (
-                'Join Game'
+                'Tham gia phòng chơi'
               )}
             </button>
           </div>
@@ -250,24 +250,24 @@ export default function PlayerJoin({ onJoinGame }: PlayerJoinProps) {
           <div className="mt-8 p-4 bg-[#F0B7A4]/20 backdrop-blur-sm rounded-xl border border-[#F0B7A4]/50 shadow-sm">
             <h3 className="font-semibold text-[#305F72] mb-3 flex items-center gap-2">
               <FiInfo className="w-5 h-5 text-[#568EA6]" />
-              How to Join:
+              Cách tham gia:
             </h3>
             <ol className="text-sm text-[#305F72]/80 space-y-2">
               <li className="flex items-start gap-3">
                 <span className="bg-[#568EA6] text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">1</span>
-                <span className="font-medium">Get the 6-digit PIN from your host</span>
+                <span className="font-medium">Lấy mã PIN 6 chữ số từ người tổ chức</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="bg-[#568EA6] text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">2</span>
-                <span className="font-medium">Enter your name (up to 20 characters)</span>
+                <span className="font-medium">Nhập tên của bạn (tối đa 20 ký tự)</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="bg-[#568EA6] text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">3</span>
-                <span className="font-medium">Click "Join Game" to enter the waiting room</span>
+                <span className="font-medium">Nhấp "Tham gia phòng chơi" để vào phòng chờ</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="bg-[#568EA6] text-white font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center mt-0.5 flex-shrink-0">4</span>
-                <span className="font-medium">Wait for the host to start the game</span>
+                <span className="font-medium">Chờ người tổ chức bắt đầu trò chơi</span>
               </li>
             </ol>
           </div>

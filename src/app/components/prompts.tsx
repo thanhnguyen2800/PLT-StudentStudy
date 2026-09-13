@@ -800,15 +800,15 @@ Number of questions: [REPLACE WITH NUMBER]`,
   ];
 
   const categories = [
-    { id: 'all', name: 'All Categories', icon: FaBrain },
-    { id: 'document-analysis', name: 'Document Analysis', icon: FaFilePdf },
-    { id: 'general', name: 'General Knowledge', icon: FaBrain },
-    { id: 'education', name: 'Education', icon: FaGraduationCap },
-    { id: 'professional', name: 'Professional', icon: FaChartLine },
-    { id: 'technology', name: 'Technology', icon: FaCode },
-    { id: 'science', name: 'Science', icon: FaFlask },
-    { id: 'literature', name: 'Literature', icon: FaBook },
-    { id: 'advanced', name: 'Advanced Features', icon: FaRocket }
+    { id: 'all', name: 'Tất cả danh mục', icon: FaBrain },
+    { id: 'document-analysis', name: 'Phân tích tài liệu', icon: FaFilePdf },
+    { id: 'general', name: 'Kiến thức tổng quát', icon: FaBrain },
+    { id: 'education', name: 'Giáo dục', icon: FaGraduationCap },
+    { id: 'professional', name: 'Chuyên môn', icon: FaChartLine },
+    { id: 'technology', name: 'Công nghệ', icon: FaCode },
+    { id: 'science', name: 'Khoa học', icon: FaFlask },
+    { id: 'literature', name: 'Văn học', icon: FaBook },
+    { id: 'advanced', name: 'Tính năng nâng cao', icon: FaRocket }
   ];
 
   const filteredPrompts = selectedCategory === 'all'
@@ -820,12 +820,12 @@ Number of questions: [REPLACE WITH NUMBER]`,
       await navigator.clipboard.writeText(text);
       setCopiedPrompt(promptId);
       if (typeof showToastMessage === 'function') {
-        showToastMessage('Prompt copied to clipboard!');
+        showToastMessage('Đã sao chép Prompt!');
       }
       setTimeout(() => setCopiedPrompt(null), 2000);
     } catch (err) {
       if (typeof showToastMessage === 'function') {
-        showToastMessage('Failed to copy prompt. Please try again.');
+        showToastMessage('Không thể sao chép Prompt. Vui lòng thử lại.');
       }
       console.error('Copy failed:', err);
     }
@@ -837,11 +837,10 @@ Number of questions: [REPLACE WITH NUMBER]`,
       <div className="text-center">
         <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-3" style={{ color: '#305F72' }}>
           <FaRocket style={{ color: '#568EA6' }} />
-          Premium AI Quiz Prompts
+          Prompt AI nâng cao
         </h2>
         <p className="max-w-4xl mx-auto" style={{ color: '#305F72', opacity: 0.8 }}>
-          Advanced prompt templates designed by educational experts to generate sophisticated,
-          pedagogically-sound quizzes with AI. All prompts now follow the standardized JSON format for consistent quiz generation.
+          Mẫu Prompt nâng cao do các chuyên gia giáo dục thiết kế để tạo Quiz chất lượng bằng AI. Tất cả Prompt đều tuân theo định dạng JSON thống nhất.
         </p>
       </div>
 
@@ -900,7 +899,7 @@ Number of questions: [REPLACE WITH NUMBER]`,
                             template.difficulty === 'Intermediate' ? '#F0F4F8' :
                               '#F18C8E'
                         }}>
-                        {template.difficulty}
+                        {template.difficulty === 'Beginner' ? 'Cơ bản' : template.difficulty === 'Intermediate' ? 'Trung cấp' : 'Nâng cao'}
                       </span>
                     )}
                   </div>
@@ -909,7 +908,7 @@ Number of questions: [REPLACE WITH NUMBER]`,
                   </p>
                   {template.estimatedTime && (
                     <p className="text-xs" style={{ color: '#305F72', opacity: 0.6 }}>
-                      Estimated time: {template.estimatedTime}
+                      Thời gian dự kiến: {template.estimatedTime}
                     </p>
                   )}
                 </div>
@@ -917,7 +916,7 @@ Number of questions: [REPLACE WITH NUMBER]`,
 
               {/* Prompt Preview */}
               <div className="bg-white rounded-lg p-4 mb-4 border" style={{ borderColor: '#F0B7A4' }}>
-                <div className="text-xs mb-2 font-medium" style={{ color: '#305F72' }}>PROMPT TEMPLATE</div>
+                <div className="text-xs mb-2 font-medium" style={{ color: '#305F72' }}>MẪU PROMPT</div>
                 <div className="text-sm font-mono bg-white p-3 rounded border max-h-32 overflow-y-auto" style={{ color: '#305F72', borderColor: '#F0B7A4' }}>
                   {template.prompt.substring(0, 200)}...
                 </div>
@@ -926,7 +925,7 @@ Number of questions: [REPLACE WITH NUMBER]`,
               {/* Example */}
               {template.example && (
                 <div className="bg-white rounded-lg p-3 mb-4 border" style={{ borderColor: '#568EA6' }}>
-                  <div className="text-xs mb-1 font-medium" style={{ color: '#568EA6' }}>EXAMPLE USAGE</div>
+                  <div className="text-xs mb-1 font-medium" style={{ color: '#568EA6' }}>VÍ DỤ SỬ DỤNG</div>
                   <div className="text-sm font-mono" style={{ color: '#305F72' }}>
                     {template.example}
                   </div>
@@ -947,7 +946,7 @@ Number of questions: [REPLACE WITH NUMBER]`,
                   }}
                 >
                   <FaCopy className="w-4 h-4" />
-                  {copiedPrompt === template.id ? 'Copied!' : 'Copy Prompt'}
+                  {copiedPrompt === template.id ? 'Đã sao chép!' : 'Sao chép Prompt'}
                 </button>
               </div>
             </div>
@@ -959,31 +958,31 @@ Number of questions: [REPLACE WITH NUMBER]`,
       <div className="rounded-xl p-6 border" style={{ background: 'linear-gradient(to right, #F0B7A4, #F0F4F8)', borderColor: '#F0B7A4' }}>
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2" style={{ color: '#305F72' }}>
           <FaRocket style={{ color: '#568EA6' }} />
-          Updated Implementation Guide
+          Hướng dẫn sử dụng cập nhật
         </h3>
         <div className="grid md:grid-cols-2 gap-6 text-sm" style={{ color: '#305F72' }}>
           <div>
-            <h4 className="font-medium mb-2" style={{ color: '#305F72' }}>1. Standardized Output</h4>
-            <p style={{ opacity: 0.8 }}>All prompts now generate quizzes in the exact same JSON format with "title" and "questions" arrays, ensuring consistency across all quiz types.</p>
+            <h4 className="font-medium mb-2" style={{ color: '#305F72' }}>1. Kết quả thống nhất</h4>
+            <p style={{ opacity: 0.8 }}>Tất cả Prompt tạo Quiz theo cùng một định dạng JSON với mảng "title" và "questions", đảm bảo tính nhất quán.</p>
           </div>
           <div>
-            <h4 className="font-medium mb-2" style={{ color: '#305F72' }}>2. Zero-Based Indexing</h4>
-            <p style={{ opacity: 0.8 }}>The "correct" field uses zero-based indexing (0=first option, 1=second option, etc.) for technical compatibility and ease of processing.</p>
+            <h4 className="font-medium mb-2" style={{ color: '#305F72' }}>2. Đánh chỉ mục từ 0</h4>
+            <p style={{ opacity: 0.8 }}>Trường "correct" dùng chỉ mục bắt đầu từ 0 (0=lựa chọn đầu, 1=lựa chọn thứ hai...) để tương thích kỹ thuật.</p>
           </div>
           <div>
-            <h4 className="font-medium mb-2" style={{ color: '#305F72' }}>3. Customize Parameters</h4>
-            <p style={{ opacity: 0.8 }}>Replace all bracketed placeholders with your specific information. The AI will generate content that fits the standardized format.</p>
+            <h4 className="font-medium mb-2" style={{ color: '#305F72' }}>3. Tùy chỉnh tham số</h4>
+            <p style={{ opacity: 0.8 }}>Thay các phần trong ngoặc bằng thông tin cụ thể của bạn. AI sẽ tạo nội dung theo định dạng thống nhất.</p>
           </div>
           <div>
-            <h4 className="font-medium mb-2" style={{ color: '#305F72' }}>4. Validate and Test</h4>
-            <p style={{ opacity: 0.8 }}>Always verify the generated JSON is valid and test your quizzes before deployment. The standardized format makes integration easier.</p>
+            <h4 className="font-medium mb-2" style={{ color: '#305F72' }}>4. Kiểm tra và thử nghiệm</h4>
+            <p style={{ opacity: 0.8 }}>Luôn kiểm tra JSON được tạo là hợp lệ và thử Quiz trước khi sử dụng. Định dạng thống nhất giúp tích hợp dễ dàng hơn.</p>
           </div>
         </div>
 
         <div className="mt-6 p-4 bg-white rounded-lg border" style={{ borderColor: '#F0B7A4' }}>
           <h4 className="font-medium mb-2 flex items-center gap-2" style={{ color: '#305F72' }}>
             <FaBrain style={{ color: '#568EA6' }} />
-            JSON Format Benefits
+            Lợi ích của định dạng JSON
           </h4>
           <ul className="text-sm space-y-1" style={{ color: '#305F72', opacity: 0.8 }}>
             <li>• <strong>Consistent Structure:</strong> All quizzes follow the same format for easy parsing</li>
