@@ -143,18 +143,6 @@ export function AuthPage({ onClose }: { onClose: () => void }) {
         </button>
       </form>
 
-      <div className="mt-6 text-center">
-        <p className="text-[#305F72]/70 text-sm">
-          {isSignUp ? 'Already have an account?' : "Don't have an account?"}
-        </p>
-        <button
-          onClick={toggleMode}
-          className="text-[#568EA6] hover:text-[#305F72] font-medium text-sm mt-1 transition-colors focus:outline-none focus:ring-2 focus:ring-[#568EA6] focus:ring-offset-2 rounded px-1"
-        >
-          {isSignUp ? 'Sign In' : 'Sign Up'}
-        </button>
-      </div>
-
       {!isSignUp && (
         <div className="mt-4 p-4 bg-[#F0B7A4]/30 border border-[#F0B7A4]/50 rounded-lg">
           <p className="text-[#305F72] text-sm font-medium mb-2">Demo Account:</p>
