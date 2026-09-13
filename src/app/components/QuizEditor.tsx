@@ -139,7 +139,12 @@ export function QuizEditor({ onBack, editingQuiz }: QuizEditorProps) {
 
   // Save quiz
   const saveQuiz = async () => {
-    if (!user || !quiz.title.trim() || quiz.questions.length === 0) {
+    if (!user || !user.emailVerified) {
+      alert('Vui lòng xác minh email trước khi tạo Quiz.');
+      return;
+    }
+
+    if (!quiz.title.trim() || quiz.questions.length === 0) {
       alert('Please add a title and at least one question');
       return;
     }

@@ -18,7 +18,7 @@ const DEMO_STORAGE_KEY = 'student-study-demo-session';
 const localDemoUser = {
   uid: 'local-demo-user',
   email: DEMO_EMAIL,
-  emailVerified: true,
+  emailVerified: false,
   displayName: 'Demo User',
   isAnonymous: false,
   phoneNumber: null,

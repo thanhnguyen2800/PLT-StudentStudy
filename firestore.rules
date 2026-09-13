@@ -4,6 +4,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     match /quizzes/{quizId} {
       allow create: if request.auth != null
+        && request.auth.token.email_verified == true
         && request.resource.data.userId == request.auth.uid;
 
       allow read: if request.auth != null
@@ -11,6 +12,7 @@ service cloud.firestore {
           || resource.data.userId == request.auth.uid);
 
       allow update, delete: if request.auth != null
+        && request.auth.token.email_verified == true
         && resource.data.userId == request.auth.uid;
     }
   }

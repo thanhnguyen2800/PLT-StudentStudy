@@ -24,6 +24,17 @@ export function EmailVerificationBanner({ user }: { user: User }) {
     }
   };
 
+  const refreshVerificationStatus = async () => {
+    try {
+      await user.reload();
+      window.location.reload();
+    } catch (error: any) {
+      console.error('❌ Failed to refresh verification status:', error.message);
+      setMessage('Không thể kiểm tra trạng thái. Vui lòng tải lại trang.');
+      setTimeout(() => setMessage(''), 3000);
+    }
+  };
+
   if (user?.emailVerified) return null;
 
   return (
@@ -38,6 +49,12 @@ export function EmailVerificationBanner({ user }: { user: User }) {
           className="bg-orange-700 hover:bg-orange-800 disabled:bg-orange-800 px-3 py-1 rounded text-xs font-medium transition-colors"
         >
           {isResending ? 'Đang gửi...' : 'Gửi lại email'}
+        </button>
+        <button
+          onClick={refreshVerificationStatus}
+          className="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-xs font-medium transition-colors"
+        >
+          Tôi đã xác minh
         </button>
       </div>
       {message && (

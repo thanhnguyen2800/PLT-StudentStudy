@@ -110,7 +110,12 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
   };
 
   const saveUploadedQuiz = async () => {
-    if (!uploadedQuiz || !user || !quizTitle.trim()) return;
+    if (!user?.emailVerified) {
+      alert('Vui lòng xác minh email trước khi tạo Quiz.');
+      return;
+    }
+
+    if (!uploadedQuiz || !quizTitle.trim()) return;
     
     setUploading(true);
     try {
@@ -175,7 +180,10 @@ export function QuizLibrary({ onSelectQuiz, onBack, onEditQuiz, mode }: QuizLibr
   };
 
   const duplicateQuiz = async (quiz: StoredQuiz) => {
-    if (!user) return;
+    if (!user?.emailVerified) {
+      alert('Vui lòng xác minh email trước khi tạo Quiz.');
+      return;
+    }
     
     try {
       const duplicatedQuiz: Quiz = {

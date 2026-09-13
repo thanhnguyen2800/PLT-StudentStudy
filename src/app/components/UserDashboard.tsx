@@ -140,7 +140,12 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
   };
 
   const saveQuiz = async () => {
-    if (!user || !quiz.title.trim() || quiz.questions.length === 0) {
+    if (!user || !user.emailVerified) {
+      showToastMessage('Vui lòng xác minh email trước khi tạo Quiz.');
+      return;
+    }
+
+    if (!quiz.title.trim() || quiz.questions.length === 0) {
       showToastMessage('Vui lòng thêm tiêu đề và ít nhất một câu hỏi');
       return;
     }
@@ -343,10 +348,14 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
           </button>
           <button
             onClick={() => {
+              if (!user.emailVerified) {
+                showToastMessage('Vui lòng xác minh email trước khi tạo Quiz.');
+                return;
+              }
               setActiveTab('create');
               resetEditor();
             }}
-            className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap ${activeTab === 'create' ? 'text-white shadow-lg' : 'hover:bg-white/70'
+            className={`flex-1 py-3 px-4 rounded-md font-medium transition-all duration-200 flex items-center justify-center gap-2 whitespace-nowrap ${!user.emailVerified ? 'opacity-50 cursor-not-allowed' : ''} ${activeTab === 'create' ? 'text-white shadow-lg' : 'hover:bg-white/70'
               }`}
             style={activeTab === 'create' ? { backgroundColor: '#568EA6' } : { color: '#305F72' }}
           >
@@ -465,7 +474,13 @@ export function UserDashboard({ onBack, onPlayQuiz, onHostGame, onJoinGame, onSo
                 <h3 className="text-xl font-semibold mb-2" style={{ color: '#305F72' }}>Chưa có Quiz</h3>
                 <p className="mb-6" style={{ color: '#305F72', opacity: 0.7 }}>Create your first quiz to get started!</p>
                 <button
-                  onClick={() => setActiveTab('create')}
+                  onClick={() => {
+                    if (!user.emailVerified) {
+                      showToastMessage('Vui lòng xác minh email trước khi tạo Quiz.');
+                      return;
+                    }
+                    setActiveTab('create');
+                  }}
                   className="text-white px-6 py-3 rounded-lg font-semibold transition-all duration-200 flex items-center gap-2 mx-auto"
                   style={{ backgroundColor: '#568EA6' }}
                 >

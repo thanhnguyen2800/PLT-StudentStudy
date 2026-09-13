@@ -39,6 +39,10 @@ export class QuizStorageService {
     isPublic: boolean = false, 
     tags: string[] = []
   ): Promise<string> {
+    if (!user.emailVerified) {
+      throw new Error('EMAIL_NOT_VERIFIED');
+    }
+
     try {
       const quizId = `quiz_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
       const quizRef = doc(firestore, 'quizzes', quizId);
