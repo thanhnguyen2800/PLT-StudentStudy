@@ -14,7 +14,14 @@ export default function MainPage({ onShowAuth, user, onNavigate }: MainPageProps
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F0F4F8' }}>
       {/* Hero Section */}
-      <section className="pt-20 pb-16 px-4 sm:px-8">
+      <section
+        className="relative overflow-hidden pt-20 pb-16 px-4 sm:px-8"
+        style={{
+          backgroundImage: "linear-gradient(rgba(240, 244, 248, 0.78), rgba(240, 244, 248, 0.9)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2000&q=85')",
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+        }}
+      >
         <div className="max-w-6xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-white px-6 py-3 rounded-full border mb-8">
             <FaRocket style={{ color: '#568EA6' }} />
