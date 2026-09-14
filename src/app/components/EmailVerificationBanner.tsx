@@ -38,7 +38,10 @@ export function EmailVerificationBanner({ user }: { user: User }) {
   if (user?.emailVerified) return null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 bg-orange-600 text-white text-center py-3 z-40">
+    <div
+      className="fixed top-0 left-0 right-0 bg-orange-600 text-center py-3 z-40"
+      style={{ color: '#2563eb' }}
+    >
       <div className="flex items-center justify-center gap-4 px-4">
         <span className="text-sm font-medium">
           ⚠️ Vui lòng xác minh địa chỉ email để sử dụng đầy đủ tính năng
@@ -53,6 +56,7 @@ export function EmailVerificationBanner({ user }: { user: User }) {
         <button
           onClick={refreshVerificationStatus}
           className="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-xs font-medium transition-colors"
+          style={{ color: '#2563eb' }}
         >
           Tôi đã xác minh
         </button>
